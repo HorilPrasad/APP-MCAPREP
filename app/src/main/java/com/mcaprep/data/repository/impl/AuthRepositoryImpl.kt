@@ -1,5 +1,6 @@
 package com.mcaprep.data.repository.impl
 
+import com.mcaprep.data.local.PrefManager
 import com.mcaprep.data.local.dao.UserDao
 import com.mcaprep.data.remote.api.ApiService
 import com.mcaprep.data.remote.model.LoginRequest
@@ -11,7 +12,8 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val pref: PrefManager
 ): AuthRepository {
     override suspend fun login(loginRequest: LoginRequest): LoginResponse {
         try {
@@ -31,6 +33,11 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             throw e
         }
+    }
+
+    override suspend fun logout() {
+        pref.loggedOut()
+        userDao.deleteAllUsers()
     }
 
     override suspend fun notificationImage(): NotificationImageResponse {

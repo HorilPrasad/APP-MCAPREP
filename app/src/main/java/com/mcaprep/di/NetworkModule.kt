@@ -36,10 +36,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideUnauthorizedInterceptor(
-    ): UnauthorizedInterceptor {
-        return UnauthorizedInterceptor()
-    }
+    fun provideUnauthorizedInterceptor(): UnauthorizedInterceptor = UnauthorizedInterceptor()
 
     @Provides
     @Singleton

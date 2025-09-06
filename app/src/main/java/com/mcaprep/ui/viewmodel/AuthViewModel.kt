@@ -1,6 +1,5 @@
 package com.mcaprep.ui.viewmodel
 
-import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,12 +10,9 @@ import com.mcaprep.data.repository.AuthRepository
 import com.mcaprep.domain.mapper.toDomain
 import com.mcaprep.domain.model.User
 import com.mcaprep.ui.adapter.CarouselItem
-import com.mcaprep.utils.NavigationHelper
 import com.mcaprep.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -46,13 +42,9 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun logout(activity: Activity) {
+    fun logout() {
         viewModelScope.launch {
-            pref.loggedOut()
-
-            withContext(Dispatchers.IO) {
-                NavigationHelper.navigateToAuth(activity)
-            }
+            authRepository.logout()
         }
     }
 

@@ -6,5 +6,7 @@ import com.mcaprep.data.remote.model.NotificationImageResponse
 
 interface AuthRepository {
     suspend fun login(loginRequest: LoginRequest): LoginResponse
+    suspend fun logout()
+
     suspend fun notificationImage(): NotificationImageResponse
 }

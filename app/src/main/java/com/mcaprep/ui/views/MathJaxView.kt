@@ -88,7 +88,7 @@ class MathJaxView @JvmOverloads constructor(
         setupTouchHandling()
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     private fun setupWebView() {
         with(settings) {
             javaScriptEnabled = true
