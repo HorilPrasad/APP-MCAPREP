@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.HomeFragment">
+
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/skeletonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/home_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="4dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/user_image_card"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="20dp"
+                        android:layout_margin="4dp"
+                        app:cardElevation="4dp">
+
+                        <ImageView
+                            android:id="@+id/user_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/mcaprep"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/text_size_large"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/streak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/padding_medium"
+                        android:background="@color/lightPrimaryColor"
+                        app:cardCornerRadius="20dp">
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/fa"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:scaleType="centerCrop"-->
+<!--                            android:src="@color/white" />-->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center_horizontal"
+                            android:paddingHorizontal="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/streak" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="5dp"
+                                android:text="5" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="70dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/carousel_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never" />
+
+                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                        android:id="@+id/dots_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        app:dotsColor="@color/secondaryColor"
+                        app:dotsCornerRadius="8dp"
+                        app:dotsSize="@dimen/padding_small"
+                        app:dotsSpacing="4dp"
+                        app:dotsWidthFactor="2.5"
+                        app:progressMode="true"
+                        app:selectedDotColor="@color/primaryColor" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Exams"
+                            android:paddingHorizontal="@dimen/padding_medium"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryColor"/>
+
+                        <HorizontalScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fillViewport="true"
+                            android:scrollbars="none">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/nimcet"
+                                    android:layout_width="150dp"
+                                    android:layout_height="120dp"
+                                    app:cardElevation="4dp"
+                                    app:cardCornerRadius="8dp"
+                                    app:cardUseCompatPadding="true">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="@dimen/padding_small"
+                                        android:orientation="vertical">
+                                        <ImageView
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
+                                            android:background="@drawable/icon_background1"
+                                            android:padding="12dp"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/degree" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="NIMCET"
+                                            android:textColor="@color/primaryColor"
+                                            android:textSize="@dimen/text_size_small"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cuet"
+                                    android:layout_width="150dp"
+                                    android:layout_height="120dp"
+                                    app:cardElevation="4dp"
+                                    app:cardCornerRadius="8dp"
+                                    app:cardUseCompatPadding="true">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="@dimen/padding_small"
+                                        android:orientation="vertical">
+                                        <ImageView
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
+                                            android:background="@drawable/icon_background"
+                                            android:padding="12dp"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/icon_cuet" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="CUET"
+                                            android:textColor="@color/primaryColor"
+                                            android:textSize="@dimen/text_size_small"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/mah_cet"
+                                    android:layout_width="150dp"
+                                    android:layout_height="120dp"
+                                    app:cardElevation="4dp"
+                                    app:cardCornerRadius="8dp"
+                                    app:cardUseCompatPadding="true">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="@dimen/padding_small"
+                                        android:orientation="vertical">
+                                        <ImageView
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
+                                            android:background="@drawable/icon_background2"
+                                            android:padding="12dp"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/icon_mah" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="MAH-CET"
+                                            android:textColor="@color/primaryColor"
+                                            android:textSize="@dimen/text_size_small"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/jeca"
+                                    android:layout_width="150dp"
+                                    android:layout_height="120dp"
+                                    app:cardElevation="4dp"
+                                    app:cardCornerRadius="8dp"
+                                    app:cardUseCompatPadding="true">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="@dimen/padding_small"
+                                        android:orientation="vertical">
+                                        <ImageView
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
+                                            android:background="@drawable/icon_background"
+                                            android:padding="12dp"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/icon_test" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="JECA"
+                                            android:textColor="@color/primaryColor"
+                                            android:textSize="@dimen/text_size_small"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+
+                        </HorizontalScrollView>
+
+                    </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="4dp"
+                        app:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="205dp"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            android:padding="@dimen/padding_small">
+
+                            <!-- GridLayout for icons and labels -->
+                            <GridLayout
+                                android:id="@+id/gridLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="190dp"
+                                android:alignmentMode="alignMargins"
+                                android:columnCount="4"
+                                android:rowCount="2"
+                                android:rowOrderPreserved="false">
+
+                                <!-- Sample Item 1 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_test" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="TOTD"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <!-- Sample Item 2 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background1"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_previous" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="PYQ"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background2"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_mock" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="Mocks"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_topic" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="Topic Wise"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background1"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_nimcet" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="NIMCET"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <!-- Sample Item 2 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background2"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_mah" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="MAH CET"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_cuet" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="CUET"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical"
+                                    android:padding="8dp">
+
+                                    <ImageView
+                                        android:layout_width="56dp"
+                                        android:layout_height="56dp"
+                                        android:background="@drawable/icon_background1"
+                                        android:padding="12dp"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/icon_material" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:gravity="center"
+                                        android:text="Materials"
+                                        android:textColor="@color/primaryColor"
+                                        android:textSize="@dimen/text_size_small"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <!-- Add similar items for Quizzes, Practice, etc. -->
+
+                            </GridLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_small"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/padding_small"
+                        android:paddingEnd="@dimen/padding_small">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:elevation="4dp"
+                            app:cardCornerRadius="4dp"
+                            app:cardPreventCornerOverlap="true"
+                            app:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/gradient_bg2" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/padding_small">
+
+                                <TextView
+                                    android:id="@+id/subject_sprint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:text="Subject Sprint"
+                                    android:textColor="@color/primaryColor"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/subject_sprint"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Focus on subjects"
+                                    android:textColor="@color/primaryColor"
+                                    android:textSize="@dimen/text_size_small" />
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:src="@drawable/icon_target" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tag"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="25dp"
+                                    android:background="@drawable/icon_background1"
+                                    android:paddingStart="12dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingEnd="12dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Start"
+                                    android:textColor="@color/primaryColor" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="120dp"
+                            android:layout_weight="1"
+                            android:elevation="4dp"
+                            app:cardCornerRadius="4dp"
+                            app:cardPreventCornerOverlap="true"
+                            app:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/gradient_bg1" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/padding_small">
+
+                                <TextView
+                                    android:id="@+id/topic_target"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:text="Topic target"
+                                    android:textColor="#846904"
+                                    android:textSize="@dimen/text_size_medium"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tag1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/topic_target"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Focus on topics"
+                                    android:textColor="#846904"
+                                    android:textSize="@dimen/text_size_small" />
+
+                                <ImageView
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:src="@drawable/icon_focus" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tag1"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginTop="25dp"
+                                    android:background="@drawable/icon_background"
+                                    android:paddingStart="12dp"
+                                    android:paddingTop="5dp"
+                                    android:paddingEnd="12dp"
+                                    android:paddingBottom="5dp"
+                                    android:text="Start"
+                                    android:textColor="#846904" />
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/active_test_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_medium"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_medium">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active test"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="@dimen/text_size_medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/padding_small"
+                            android:padding="@dimen/padding_small"
+                            android:text="Hi Champ! Looks like you are not practicing, Start Some Test"
+                            android:textColor="@color/primaryColor"
+                            android:textSize="@dimen/text_size_small"
+                            android:visibility="gone" />
+
+                        <include layout="@layout/item_test" />
+
+
+                    </LinearLayout>
+
+<!--                    <include layout="@layout/item_testimonial" />-->
+
+<!--                    <include layout="@layout/item_premium_buy" />-->
+
+                    <include
+                        android:id="@+id/footer"
+                        layout="@layout/item_footer" />
+                </LinearLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

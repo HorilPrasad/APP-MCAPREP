@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MCAPREP" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/primaryColor</item>
+<!--         <item name="statusBarBackground">@color/background</item>-->
+<!--        <item name="android:statusBarColor">@color/background</item>-->
+<!--        <item name="statusBarForeground">@color/background</item>-->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:navigationBarColor">@color/background</item>
+        <item name="background">@color/background</item>
+    </style>
+
+    <style name="Theme.MCAPREP" parent="Base.Theme.MCAPREP" />
+
+    <!-- res/values/styles.xml -->
+    <style name="BottomNavText" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TestScreenTheme" parent="Base.Theme.MCAPREP">
+<!--        <item name="android:colorPrimary">@color/mediumLightPrimaryColor</item>-->
+<!--        <item name="android:colorPrimaryDark">@color/primaryColor</item>-->
+    </style>
+</resources>

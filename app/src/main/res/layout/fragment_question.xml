@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.fragment.QuestionFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/question_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/gradient_bg2"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_small">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/question_number"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/white_circle_with_border"
+            android:gravity="center"
+            android:text="120"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold" />
+
+        <!-- Divider Line -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/primaryColor" />
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="24dp"-->
+        <!--            android:layout_height="24dp"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:src="@drawable/clock_outline"-->
+        <!--            app:tint="@color/primaryColor" />-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:text="00 : 04"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/gradient_bg2"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:text="+ 4"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/gradient_bg2"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:text="- 1"
+            android:textColor="@color/secondaryColor"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_weight="1" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/report_outline"
+            app:tint="@color/primaryColor" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/custom_star_checkbox"
+            android:button="@null" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/question_header">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/question_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium">
+
+            <com.mcaprep.ui.views.MathJaxView
+                android:id="@+id/question_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:padding="@dimen/padding_small"
+                android:text="@string/question"
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="normal" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:visibility="gone"
+                app:srcCompat="@drawable/google" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/op_a_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:background="@drawable/border_radius_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/padding_small">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="A. "
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.mcaprep.ui.views.MathJaxView
+                    android:id="@+id/op_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:justificationMode="inter_word" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/op_b_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:background="@drawable/border_radius_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/padding_small">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="B. "
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.mcaprep.ui.views.MathJaxView
+                    android:id="@+id/op_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:justificationMode="inter_word" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/op_c_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:background="@drawable/border_radius_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/padding_small">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="C. "
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.mcaprep.ui.views.MathJaxView
+                    android:id="@+id/op_c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:justificationMode="inter_word" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/op_d_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:background="@drawable/border_radius_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/padding_small">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="D. "
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.mcaprep.ui.views.MathJaxView
+                    android:id="@+id/op_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:justificationMode="inter_word" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/op_e_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:background="@drawable/border_radius_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/padding_small">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:justificationMode="inter_word"
+                    android:text="E. "
+                    android:textColor="@color/primaryColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <com.mcaprep.ui.views.MathJaxView
+                    android:id="@+id/op_e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:justificationMode="inter_word" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

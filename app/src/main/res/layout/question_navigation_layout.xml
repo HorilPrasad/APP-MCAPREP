@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_view"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:layout_gravity="end"
+android:background="@color/white"
+android:fitsSystemWindows="true">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primaryColor"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/test_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/padding_small"
+        android:text="Test Name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="55dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_small">
+
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/report_outline"
+            app:tint="@color/primaryColor" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="View Instruction"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/text_size_medium" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@color/primaryColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_small">
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@color/primaryColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_small">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="Section 1"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/text_size_medium" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:rotation="90"
+            android:src="@drawable/right"
+            android:tint="@color/primaryColor"
+            tools:ignore="UseAppTint" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/padding_small"
+        android:background="@color/primaryColor" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/question_number_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_medium"
+        android:clipToPadding="false"
+        android:padding="@dimen/padding_small"
+        android:scrollbars="vertical"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_question_number" />
+
+</LinearLayout>
+
+
+<RelativeLayout
+    android:id="@+id/submit_button_layout"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_gravity="bottom"
+    android:elevation="5dp"
+    android:paddingHorizontal="@dimen/padding_medium">
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="1dp"
+        android:backgroundTint="@color/primaryColor"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textFontWeight="600"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/white_circle"
+        android:padding="6dp"
+        app:srcCompat="@drawable/icon_submit"
+        app:tint="@color/primaryColor" />
+
+    <!-- Circle Icon at the End -->
+</RelativeLayout>
+
+
+</com.google.android.material.navigation.NavigationView>

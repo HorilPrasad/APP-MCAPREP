@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_auth"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.mcaprep.ui.fragment.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/register"
+        android:name="com.mcaprep.ui.fragment.RegisterFragment"
+        tools:layout="@layout/fragment_register" />
+</navigation>

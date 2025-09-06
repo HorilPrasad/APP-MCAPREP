@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    android:clipToPadding="true"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+
+    <ImageView
+        android:id="@+id/test_item_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/test_card_bg"
+        android:src="@drawable/gradient_bg2"
+        android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_medium">
+
+        <TextView
+            android:id="@+id/test_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/test_difficulty"
+            android:text="Practice test- 01"
+            android:textColor="@color/primaryColor"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/schedule_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/test_name"
+            android:paddingTop="@dimen/padding_small"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clock_outline"/>
+            <TextView
+                android:id="@+id/test_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_small"
+                android:text="20 Apr, 9:51 AM"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/question_details_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/schedule_layout"
+            android:paddingTop="@dimen/padding_small"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_question"/>
+            <TextView
+                android:id="@+id/test_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_small"
+                android:text="Questions: 19 | 25 Minutes"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/marks_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/test_name"
+            android:layout_toEndOf="@+id/schedule_layout"
+            android:layout_marginStart="@dimen/padding_medium"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/padding_small">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_marks" />
+
+            <TextView
+                android:id="@+id/test_marks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_small"
+                android:text="76 Marks" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/people_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question_details_layout"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/padding_small"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_peoples" />
+            <TextView
+                android:id="@+id/test_attempted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_small"
+                android:text="Attempted:"/>
+
+            <TextView
+                android:id="@+id/test_attempt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_small"
+                android:text="329" />
+        </LinearLayout>
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/test_report"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginTop="@dimen/padding_small"-->
+<!--            android:background="@drawable/icon_background2"-->
+<!--            android:paddingStart="12dp"-->
+<!--            android:paddingTop="5dp"-->
+<!--            android:paddingEnd="12dp"-->
+<!--            android:paddingBottom="5dp"-->
+<!--            android:text="View Report"-->
+<!--            android:textColor="#8B0FB8"-->
+<!--            android:textStyle="bold" />-->
+        <ImageView
+            android:id="@+id/test_premium"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/icon_premium" />
+
+
+        <!--        <LinearLayout-->
+<!--            android:id="@+id/start_btn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:paddingStart="12dp"-->
+<!--            android:paddingTop="5dp"-->
+<!--            android:paddingEnd="12dp"-->
+<!--            android:paddingBottom="5dp"-->
+<!--            android:background="@drawable/icon_background1">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Start"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/primaryColor" />-->
+<!--            <ImageView-->
+<!--                android:layout_width="18dp"-->
+<!--                android:layout_height="18dp"-->
+<!--                android:layout_marginStart="@dimen/padding_small"-->
+<!--                android:src="@drawable/icon_start"/>-->
+<!--        </LinearLayout>-->
+
+        <TextView
+            android:id="@+id/test_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/padding_small"
+            android:background="@drawable/icon_background"
+            android:paddingStart="12dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="5dp"
+            android:text="Medium"
+            android:textColor="#B88E0F"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

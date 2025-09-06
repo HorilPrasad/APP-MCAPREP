@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/question_number"
+    android:layout_width="38dp"
+    android:layout_height="38dp"
+    android:gravity="center"
+    android:layout_margin="4dp"
+    android:background="@drawable/border_radius_input"
+    android:text="1"
+    android:textSize="@dimen/text_size_medium"
+    android:textStyle="bold"
+    android:textColor="@android:color/black" />

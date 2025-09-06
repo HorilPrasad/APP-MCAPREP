@@ -1,0 +1,24 @@
+<!-- res/menu/bottom_nav_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/mocks"
+        android:icon="@drawable/icon_question"
+        android:title="@string/mocks" />
+
+    <item
+        android:id="@+id/pyq"
+        android:icon="@drawable/history_icon"
+        android:title="@string/pyq" />
+    <item
+        android:id="@+id/pricing"
+        android:icon="@drawable/icon_rupie"
+        android:title="@string/pricing" />
+    <item
+        android:id="@+id/stats"
+        android:icon="@drawable/icon_marks"
+        android:title="@string/stats" />
+</menu>

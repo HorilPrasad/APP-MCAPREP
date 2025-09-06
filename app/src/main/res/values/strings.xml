@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">MCAPREP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_description">image description</string>
+    <string name="home">Home</string>
+    <string name="mocks">Mocks</string>
+    <string name="pyq">PYQ</string>
+    <string name="pricing">Pricing</string>
+    <string name="stats">Stats</string>
+
+    <string name="mcaprep">MCA<font color="#FF6F61">PREP</font></string>
+    <string name="already_have_an_account_sign_in">Already have an Account? <font color="#FF6F61">SIGN IN</font></string>
+    <string name="don_t_have_an_account_sign_up">Don’t have an Account? <font color="#FF6F61">SIGN UP</font></string>
+    <string name="question">It was a quiet, kindly voice, but one with firmness in it. A woman
+was standing in the doorway, and Sherry was rubbing against her.
+She was young, quite pretty, and was dressed in red. She walked to
+the fireplace and straightened the ornaments there.
+“Down, Sherry,” she said. “Anyone would think I’d been away for a
+month!” She smiled at Horace, and went on, “However, I came back
+just in time, though I didn’t expect to meet a burglar.</string>
+
+    <string name="content">With the idea of imparting programming
+      knowledge, Mr. Sandeep Jain, an IIT Roorkee alumnus started a
+      dream, GeeksforGeeks. Whether programming excites you or you feel
+      stifled, wondering how to prepare for interview questions or how to
+      ace data structures and algorithms, GeeksforGeeks is a one-stop solution.
+      With every tick of time, we are adding arrows in our quiver. From articles
+      on various computer science subjects to programming problems for practice,
+      from basic to premium courses, from technologies to entrance examinations,
+      we have been building ample content with superior quality. In a short span,
+      we have built a community of 1 Million+ Geeks around the world, 20,000+
+      Contributors and 500+ Campus Ambassadors in various colleges across the nation.
+      Our success stories include a lot of students who benefitted in their placements
+      and landed jobs at tech giants. Our vision is to build a gigantic network of
+      geeks and we are only a fraction of it yet.
+  </string>
+    <string name="login_tagline">Login to Your Account to Continue your Courses</string>
+    <string name="let_s_sign_in">Let’s Sign In.!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="error_image_button">error image button</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="enter_otp_to_verify_your_account">Enter OTP to verify your account</string>
+    <string name="submit_otp">Submit OTP</string>
+    <string name="welcome_to">Welcome To</string>
+    <string name="getting_started">Getting Started.!</string>
+    <string name="create_an_account_to_continue_your_all_tests">Create an Account to Continue your all tests</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="agree_to_terms_amp_conditions"><![CDATA[Agree to Terms & Conditions]]></string>
+    <string name="sign_up">Sign Up</string>
+    <string name="tagline">Turn your test into selection stories combine our test and your practice to crack NIMCET examination</string>
+    <string name="featurs">Featurs</string>
+    <string name="prepare_with_confidence_for_your_mca_entrance_exams_with_our_comprehensive_resource_covering_expected_questions_and_more_access_expert_insights_detailed_explanations_and_curated_study_materials_to_excel_on_exam_day_and_beyond">Prepare with confidence for your MCA entrance exams with our comprehensive resource covering expected questions and more. Access expert insights, detailed explanations, and curated study materials to excel on exam day and beyond.</string>
+    <string name="get_started">Get started</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="carousel_image">carousel image</string>
+    <string name="test_card_bg">test_card_bg</string>
+    <string name="_2024_mcaprep">© 2024 MCA<font color="#FF6F61">PREP</font></string>
+    <string name="log_out">Log Out</string>
+</resources>
