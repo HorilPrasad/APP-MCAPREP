@@ -6,46 +6,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.mcaprep.databinding.FragmentQuestionBinding
 import com.mcaprep.domain.model.Question
+import com.mcaprep.ui.viewmodel.TestSeriesViewModel
 import com.mcaprep.utils.MathJaxInterface
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_QUESTION = "question_arg"
+private const val ARG_POSITION = "position_arg"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [QuestionFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class QuestionFragment : Fragment(), MathJaxInterface {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private var question: Question? = null
+    private var questionPosition: String? = null
 
     private var _binding: FragmentQuestionBinding? = null
     private val binding get() = _binding!!
 
+    private val testSeriesViewModel: TestSeriesViewModel by activityViewModels()
+
+    // Store option layouts for easier management
+    private lateinit var optionLayouts: Map<String, LinearLayoutCompat>
+    private lateinit var checkedLayout: Map<String, ImageView>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        question = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(ARG_PARAM1, Question::class.java)
-        } else {
-            arguments?.getParcelable<Question>(ARG_PARAM1)
+        arguments?.let {
+            question = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelable(ARG_QUESTION, Question::class.java)
+            } else {
+                it.getParcelable(ARG_QUESTION)
+            }
+            questionPosition = it.getString(ARG_POSITION)
         }
-        param2 = arguments?.getString(ARG_PARAM2)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentQuestionBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -53,58 +58,87 @@ class QuestionFragment : Fragment(), MathJaxInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val ps = question?.ps
-        val opA = question?.opA
-        val opB = question?.opB
-        val opC = question?.opC
-        val opD = question?.opD
-        val opE = question?.opE
+        binding.questionNumber.text = questionPosition
+        val currentQuestion = question ?: return
 
-        if (!ps.isNullOrBlank()) {
-            binding.questionText.setText(ps)
-        }
-        if (!opA.isNullOrBlank()) {
-            binding.opA.setText(opA)
-        }
-        if (!opB.isNullOrBlank()) {
-            binding.opB.setText(opB)
-        }
-        if (!opC.isNullOrBlank()) {
-            binding.opC.setText(opC)
-        }
-        if (!opD.isNullOrBlank()) {
-            binding.opD.setText(opD)
-        }
-        if (!opE.isNullOrBlank()) {
-            binding.opE.setText(opE)
-        }else {
+        // Initialize the map of option layouts
+        optionLayouts = mapOf(
+            "op_A" to binding.opALayout,
+            "op_B" to binding.opBLayout,
+            "op_C" to binding.opCLayout,
+            "op_D" to binding.opDLayout,
+            "op_E" to binding.opELayout
+        )
+        checkedLayout = mapOf(
+            "op_A" to binding.checkedOpA,
+            "op_B" to binding.checkedOpB,
+            "op_C" to binding.checkedOpC,
+            "op_D" to binding.checkedOpD,
+            "op_E" to binding.checkedOpE
+        )
+
+        // Ensure testId is initialized in ViewModel
+        // This might be better handled if testId is guaranteed to be set before fragments are shown
+        testSeriesViewModel.initializeTest(testSeriesViewModel.currentTestId ?: "")
+
+        // Set question text and options
+        currentQuestion.ps?.takeIf { it.isNotBlank() }?.let { binding.questionText.setText(it) }
+        currentQuestion.opA?.takeIf { it.isNotBlank() }?.let { binding.opA.setText(it) }
+        currentQuestion.opB?.takeIf { it.isNotBlank() }?.let { binding.opB.setText(it) }
+        currentQuestion.opC?.takeIf { it.isNotBlank() }?.let { binding.opC.setText(it) }
+        currentQuestion.opD?.takeIf { it.isNotBlank() }?.let { binding.opD.setText(it) }
+
+        if (!currentQuestion.opE.isNullOrBlank()) {
+            binding.opE.setText(currentQuestion.opE)
+            binding.opELayout.visibility = View.VISIBLE
+        } else {
             binding.opELayout.visibility = View.GONE
         }
 
-        binding.questionNumber.text = param2
+        // Load previously selected answer and update UI
+        lifecycleScope.launch {
+            val selectedOptionKey = currentQuestion.id?.let { testSeriesViewModel.getSelectedAnswerForQuestion(it) }
+            updateOptionSelectionVisuals(selectedOptionKey)
+        }
 
+        // Set click listeners for each option layout
+        optionLayouts.forEach { (key, layout) ->
+            layout.setOnClickListener {
+                currentQuestion.id?.let { questionId -> handleOptionClick(questionId, key) }
+            }
+        }
+    }
+
+    private fun handleOptionClick(questionId: String, selectedKey: String) {
+        updateOptionSelectionVisuals(selectedKey)
+        testSeriesViewModel.saveSelectedAnswer(questionId, selectedKey)
+    }
+
+    private fun updateOptionSelectionVisuals(selectedKey: String?) {
+        optionLayouts.forEach { (key, layout) ->
+            layout.isSelected = (key == selectedKey)
+        }
+        checkedLayout.forEach { (key, imageView) ->
+            imageView.visibility = if (key == selectedKey) View.VISIBLE else View.GONE
+        }
     }
 
     override fun onMathJaxReady() {
+        // Re-render if necessary
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment QuestionFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: Question, position: String) =
+        fun newInstance(questionData: Question, positionStr: String) =
             QuestionFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, position)
+                    putParcelable(ARG_QUESTION, questionData)
+                    putString(ARG_POSITION, positionStr)
                 }
             }
     }

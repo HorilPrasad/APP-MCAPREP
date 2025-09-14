@@ -42,7 +42,7 @@ fun formatSeconds(seconds: Long): String {
     return String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds)
 }
 
-fun startTimer(seconds: Int, textView: TextView, onFinish: () -> Unit) {
+fun startTimer(seconds: Int, textView: TextView, onFinish: () -> Unit): CountDownTimer {
     val timer = object : CountDownTimer(seconds * 1000L, 1000) { // Convert seconds to milliseconds
         override fun onTick(millisUntilFinished: Long) {
             val secondsRemaining = millisUntilFinished / 1000
@@ -50,8 +50,9 @@ fun startTimer(seconds: Int, textView: TextView, onFinish: () -> Unit) {
         }
 
         override fun onFinish() {
-            onFinish() // Trigger the callback when the timer finishes
+            onFinish.invoke() // Trigger the callback when the timer finishes
         }
     }
     timer.start()
+    return timer
 }

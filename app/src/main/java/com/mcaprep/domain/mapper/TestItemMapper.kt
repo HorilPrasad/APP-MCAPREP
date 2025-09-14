@@ -1,12 +1,17 @@
 package com.mcaprep.domain.mapper
 
+import com.mcaprep.data.local.entities.AnswerEntity
+import com.mcaprep.data.remote.model.EndTestResponse
 import com.mcaprep.data.remote.model.ExamInfoDto
 import com.mcaprep.data.remote.model.QuestionDto
+import com.mcaprep.data.remote.model.ResultDto
 import com.mcaprep.data.remote.model.SolutionsDto
 import com.mcaprep.data.remote.model.TestDetailsDto
 import com.mcaprep.data.remote.model.TestItemDto
 import com.mcaprep.domain.model.ExamInfo
 import com.mcaprep.domain.model.Question
+import com.mcaprep.domain.model.Result
+import com.mcaprep.domain.model.ResultWithQuestion
 import com.mcaprep.domain.model.Solutions
 import com.mcaprep.domain.model.TestDetails
 import com.mcaprep.domain.model.TestItem
@@ -72,6 +77,30 @@ fun ExamInfoDto.toDomain() = ExamInfo(
 )
 
 fun Solutions.toDto() = SolutionsDto(
+    question = question,
+    option = option
+)
+
+fun AnswerEntity.toDto() = SolutionsDto(
+    question = questionId,
+    option = selectedOption
+)
+
+fun EndTestResponse.toDomain() = ResultWithQuestion(
+    result = success.result.toDomain(),
+    question = success.questions.map { it.toDomain() }
+)
+
+fun ResultDto.toDomain() = Result(
+    testId = testId,
+    solution = solution.map { it.toDomain() },
+    totalScore = totalScore,
+    score = score,
+    count = count,
+    attempted = attempted
+)
+
+fun SolutionsDto.toDomain() = Solutions(
     question = question,
     option = option
 )

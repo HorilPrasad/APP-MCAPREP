@@ -2,6 +2,7 @@ package com.mcaprep.data.repository.impl
 
 import com.mcaprep.data.remote.api.ApiService
 import com.mcaprep.data.remote.model.EndTestRequest
+import com.mcaprep.data.remote.model.EndTestResponse
 import com.mcaprep.data.remote.model.StartExistingTestRequest
 import com.mcaprep.data.remote.model.StartExistingTestResponse
 import com.mcaprep.data.remote.model.TestSeriesRequest
@@ -39,11 +40,11 @@ class TestSeriesRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun endTest(endTestRequest: EndTestRequest): Boolean {
+    override suspend fun endTest(endTestRequest: EndTestRequest): EndTestResponse {
         try {
             val response = apiService.endTest(endTestRequest)
             if (response.isSuccessful) {
-                return true
+                return response.body() ?: throw Exception("Response body is null")
             } else {
                 throw Exception("Server error: ${response.errorBody()?.string()}")
             }

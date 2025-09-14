@@ -20,7 +20,8 @@ class MathJaxView @JvmOverloads constructor(
 
     companion object {
         private const val LOCAL_MATHJAX_PATH = "file:///android_asset/mathjax/es5/tex-mml-chtml.js"
-        private const val CDN_MATHJAX_URL = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        private const val CDN_MATHJAX_URL =
+            "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 
         private const val BASE_HTML = """
             <!DOCTYPE html>
@@ -46,11 +47,6 @@ class MathJaxView @JvmOverloads constructor(
                         startup: {
                             ready: () => {
                                 MathJax.startup.defaultReady();
-                                MathJax.startup.promise.then(() => {
-                                    if (window.AndroidBridge) {
-                                        window.AndroidBridge.onMathJaxReady();
-                                    }
-                                });
                             }
                         },
                         tex: {
@@ -115,7 +111,7 @@ class MathJaxView @JvmOverloads constructor(
         isHorizontalScrollBarEnabled = false
         scrollBarStyle = SCROLLBARS_OUTSIDE_OVERLAY
         overScrollMode = OVER_SCROLL_IF_CONTENT_SCROLLS
-        addJavascriptInterface(object : MathJaxInterface{
+        addJavascriptInterface(object : MathJaxInterface {
             override fun onMathJaxReady() {
 
             }
@@ -129,6 +125,7 @@ class MathJaxView @JvmOverloads constructor(
             }
             false
         }
+        isClickable = true
         isLongClickable = false
         isHapticFeedbackEnabled = false
         setOnLongClickListener { true }

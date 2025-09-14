@@ -152,10 +152,20 @@
 
                 <com.mcaprep.ui.views.MathJaxView
                     android:id="@+id/op_a"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:justificationMode="inter_word" />
+                <ImageView
+                    android:id="@+id/checked_op_a"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:padding="@dimen/padding_small"
+                    android:background="@drawable/check_circle"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -181,10 +191,20 @@
 
                 <com.mcaprep.ui.views.MathJaxView
                     android:id="@+id/op_b"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:justificationMode="inter_word" />
+                <ImageView
+                    android:id="@+id/checked_op_b"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:padding="@dimen/padding_small"
+                    android:background="@drawable/check_circle"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -210,10 +230,20 @@
 
                 <com.mcaprep.ui.views.MathJaxView
                     android:id="@+id/op_c"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:justificationMode="inter_word" />
+                <ImageView
+                    android:id="@+id/checked_op_c"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:padding="@dimen/padding_small"
+                    android:background="@drawable/check_circle"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -239,10 +269,20 @@
 
                 <com.mcaprep.ui.views.MathJaxView
                     android:id="@+id/op_d"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:justificationMode="inter_word" />
+                <ImageView
+                    android:id="@+id/checked_op_d"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:padding="@dimen/padding_small"
+                    android:background="@drawable/check_circle"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -268,10 +308,20 @@
 
                 <com.mcaprep.ui.views.MathJaxView
                     android:id="@+id/op_e"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_gravity="center"
                     android:justificationMode="inter_word" />
+                <ImageView
+                    android:id="@+id/checked_op_e"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/padding_small"
+                    android:visibility="gone"
+                    android:background="@drawable/check_circle"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 

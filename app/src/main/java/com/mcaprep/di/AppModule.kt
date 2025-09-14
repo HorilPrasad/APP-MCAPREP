@@ -13,4 +13,6 @@ object AppModule {
 
     @Provides
     fun provideUserDao(database: AppDatabase): UserDao = database.userDao()
+
+
 }

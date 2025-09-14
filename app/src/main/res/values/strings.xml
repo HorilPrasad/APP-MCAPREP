@@ -63,4 +63,5 @@ just in time, though I didn’t expect to meet a burglar.</string>
     <string name="test_card_bg">test_card_bg</string>
     <string name="_2024_mcaprep">© 2024 MCA<font color="#FF6F61">PREP</font></string>
     <string name="log_out">Log Out</string>
+    <string name="submit">Submit</string>
 </resources>

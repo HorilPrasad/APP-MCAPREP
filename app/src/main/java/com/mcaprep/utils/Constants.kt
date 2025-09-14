@@ -7,5 +7,5 @@ object Constants {
     const val PREFS_MCAPREP = "mcaprep_prefs"
     const val TEST_ID = "testId"
 
-    val APP_ENV = Environment.PROD
+    val APP_ENV = Environment.DEV
 }

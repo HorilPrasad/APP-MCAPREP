@@ -1,6 +1,7 @@
 package com.mcaprep.data.remote.api
 
 import com.mcaprep.data.remote.model.EndTestRequest
+import com.mcaprep.data.remote.model.EndTestResponse
 import com.mcaprep.data.remote.model.LoginRequest
 import com.mcaprep.data.remote.model.LoginResponse
 import com.mcaprep.data.remote.model.NotificationImageResponse
@@ -29,5 +30,5 @@ interface ApiService {
     suspend fun startExistingTest(@Body startExistingTestRequest: StartExistingTestRequest): Response<StartExistingTestResponse>
 
     @POST("test/end-test")
-    suspend fun endTest(@Body endTestRequest: EndTestRequest): Response<ResponseBody>
+    suspend fun endTest(@Body endTestRequest: EndTestRequest): Response<EndTestResponse>
 }
