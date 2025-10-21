@@ -18,3 +18,9 @@ data class User(
     val projects: List<UserProject>
 )
 
+data class RankedUser(
+    val rank: Int,
+    val name: String,
+    val marks: Float,
+    val isCurrentUser: Boolean = false
+)

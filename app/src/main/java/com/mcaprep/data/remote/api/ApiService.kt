@@ -7,13 +7,14 @@ import com.mcaprep.data.remote.model.LoginResponse
 import com.mcaprep.data.remote.model.NotificationImageResponse
 import com.mcaprep.data.remote.model.StartExistingTestRequest
 import com.mcaprep.data.remote.model.StartExistingTestResponse
+import com.mcaprep.data.remote.model.TestHistoryResponse
 import com.mcaprep.data.remote.model.TestSeriesRequest
 import com.mcaprep.data.remote.model.TestSeriesResponse
-import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -31,4 +32,10 @@ interface ApiService {
 
     @POST("test/end-test")
     suspend fun endTest(@Body endTestRequest: EndTestRequest): Response<EndTestResponse>
+
+    @GET("test/active-test")
+    suspend fun getActiveTest(): Response<StartExistingTestResponse>
+
+    @GET("test-history/{id}/count/{count}")
+    suspend fun getTestHistory(@Path("id") id: String, @Path("count") count: Int): Response<TestHistoryResponse>
 }

@@ -7,8 +7,10 @@ import androidx.core.app.ActivityOptionsCompat
 import com.mcaprep.R
 import com.mcaprep.ui.activity.AuthActivity
 import com.mcaprep.ui.activity.MainActivity
+import com.mcaprep.ui.activity.ResultActivity
 import com.mcaprep.ui.activity.TestScreenActivity
 import com.mcaprep.ui.activity.TestSeriesActivity
+import com.mcaprep.utils.Constants.COUNT
 import com.mcaprep.utils.Constants.TEST_ID
 
 object NavigationHelper {
@@ -43,6 +45,13 @@ object NavigationHelper {
     fun navigateToTestScreen(activity: Activity, testId: String) {
         val intent = Intent(activity, TestScreenActivity::class.java)
         intent.putExtra(TEST_ID, testId)
+        activity.startActivity(intent, options?.toBundle())
+    }
+
+    fun navigateToResultScreen(activity: Activity, testId: String?, count: Int?) {
+        val intent = Intent(activity, ResultActivity::class.java)
+        intent.putExtra(TEST_ID, testId)
+        intent.putExtra(COUNT, count)
         activity.startActivity(intent, options?.toBundle())
     }
 }

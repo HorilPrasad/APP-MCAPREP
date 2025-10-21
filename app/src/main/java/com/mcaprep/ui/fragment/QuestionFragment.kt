@@ -1,5 +1,6 @@
 package com.mcaprep.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +13,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.mcaprep.databinding.FragmentQuestionBinding
 import com.mcaprep.domain.model.Question
+import com.mcaprep.listeners.QuestionChange
+import com.mcaprep.ui.activity.TestScreenActivity
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
+import com.mcaprep.ui.views.MathJaxView
 import com.mcaprep.utils.MathJaxInterface
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,10 +25,11 @@ private const val ARG_QUESTION = "question_arg"
 private const val ARG_POSITION = "position_arg"
 
 @AndroidEntryPoint
-class QuestionFragment : Fragment(), MathJaxInterface {
+class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
 
     private var question: Question? = null
     private var questionPosition: String? = null
+
 
     private var _binding: FragmentQuestionBinding? = null
     private val binding get() = _binding!!
@@ -33,6 +38,7 @@ class QuestionFragment : Fragment(), MathJaxInterface {
 
     // Store option layouts for easier management
     private lateinit var optionLayouts: Map<String, LinearLayoutCompat>
+    private lateinit var options: Map<String, MathJaxView>
     private lateinit var checkedLayout: Map<String, ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +51,7 @@ class QuestionFragment : Fragment(), MathJaxInterface {
             }
             questionPosition = it.getString(ARG_POSITION)
         }
+        (activity as TestScreenActivity).setQuestionChangeListener(this)
     }
 
     override fun onCreateView(
@@ -55,10 +62,12 @@ class QuestionFragment : Fragment(), MathJaxInterface {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.questionNumber.text = questionPosition
+        // Initialize the question
+
         val currentQuestion = question ?: return
 
         // Initialize the map of option layouts
@@ -68,6 +77,14 @@ class QuestionFragment : Fragment(), MathJaxInterface {
             "op_C" to binding.opCLayout,
             "op_D" to binding.opDLayout,
             "op_E" to binding.opELayout
+        )
+
+        options = mapOf(
+            "op_A" to binding.opA,
+            "op_B" to binding.opB,
+            "op_C" to binding.opC,
+            "op_D" to binding.opD,
+            "op_E" to binding.opE
         )
         checkedLayout = mapOf(
             "op_A" to binding.checkedOpA,
@@ -81,6 +98,11 @@ class QuestionFragment : Fragment(), MathJaxInterface {
         // This might be better handled if testId is guaranteed to be set before fragments are shown
         testSeriesViewModel.initializeTest(testSeriesViewModel.currentTestId ?: "")
 
+        updateUI(currentQuestion, (questionPosition?.toInt()?.plus(1)).toString())
+    }
+
+    private fun updateUI(currentQuestion: Question, position: String) {
+        binding.questionNumber.text = position
         // Set question text and options
         currentQuestion.ps?.takeIf { it.isNotBlank() }?.let { binding.questionText.setText(it) }
         currentQuestion.opA?.takeIf { it.isNotBlank() }?.let { binding.opA.setText(it) }
@@ -102,11 +124,19 @@ class QuestionFragment : Fragment(), MathJaxInterface {
         }
 
         // Set click listeners for each option layout
-        optionLayouts.forEach { (key, layout) ->
+        options.forEach { (key, layout) ->
             layout.setOnClickListener {
                 currentQuestion.id?.let { questionId -> handleOptionClick(questionId, key) }
             }
         }
+
+//        binding.markForReview.setOnCheckedChangeListener { view, isChecked ->
+//            if (isChecked) {
+//                currentQuestion.id?.let { testSeriesViewModel.markForReviewAnswer(it, true) }
+//            } else {
+//                currentQuestion.id?.let { testSeriesViewModel.markForReviewAnswer(it, false) }
+//            }
+//        }
     }
 
     private fun handleOptionClick(questionId: String, selectedKey: String) {
@@ -130,6 +160,13 @@ class QuestionFragment : Fragment(), MathJaxInterface {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onQuestionChanged(
+        question: Question,
+        position: String
+    ) {
+        updateUI(question, position)
     }
 
     companion object {

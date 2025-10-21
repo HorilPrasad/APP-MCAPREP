@@ -8,3 +8,14 @@ data class Solutions(
     val question: String,
     val option: String?
 ): Parcelable
+
+@Parcelize
+data class AnsweredOption(
+    val testId: String,
+    val questionId: String,
+    val selectedOption: String,
+    val markForReview: Boolean
+): Parcelable
+
+
+

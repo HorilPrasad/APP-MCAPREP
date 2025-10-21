@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mcaprep.ui.fragment.TestListFragment
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val tabFilters: List<String>, private val testSeriesName: String) :
+class TestSeriesViewPagerAdapter(fragmentActivity: FragmentActivity, private val tabFilters: List<String>, private val testSeriesName: String) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = tabFilters.size

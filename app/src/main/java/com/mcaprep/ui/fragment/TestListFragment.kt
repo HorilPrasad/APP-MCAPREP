@@ -18,26 +18,20 @@ import com.mcaprep.utils.NavigationHelper
 import com.mcaprep.utils.extentions.observeResource
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_FILTER = "filter"
 private const val ARG_TEST_SERIES_NAME = "testSeriesName"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TestListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 
 @AndroidEntryPoint
 class TestListFragment : Fragment(), OnClickListeners {
-    // TODO: Rename and change types of parameters
     private var filter: String? = null
     private var testSeriesName: String? = null
     private var _binding: FragmentTestListBinding? = null
     private val binding get() = _binding!!
     private val testSeriesViewModel: TestSeriesViewModel by viewModels()
     private var originalItems: List<TestItem> = listOf()
+    private var currentTestId: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +72,22 @@ class TestListFragment : Fragment(), OnClickListeners {
         }
         testSeriesViewModel.getTestSeries(type)
 
+        testSeriesViewModel.activeTest.observeResource(
+            owner = viewLifecycleOwner,
+            onLoading = { showLoading() },
+            onSuccess = { activeTestId ->
+                if (activeTestId.isEmpty() || activeTestId == currentTestId) {
+                    if (activeTestId.isEmpty()) {
+                        testSeriesViewModel.clearAnswersForCurrentTest(currentTestId)
+                    }
+                    NavigationHelper.navigateToTestScreen(requireActivity(), currentTestId!!)
+                } else {
+                    Toast.makeText(requireContext(), "Test already in progress", Toast.LENGTH_SHORT).show()
+                }
+            },
+            onError = { errorMsg -> showError(errorMsg) }
+        )
+
     }
 
     private fun showError(string: String) {
@@ -105,19 +115,12 @@ class TestListFragment : Fragment(), OnClickListeners {
     }
 
     override fun onClick(testItem: TestItem) {
-        NavigationHelper.navigateToTestScreen(requireActivity(), testItem.id)
+        testSeriesViewModel.getActiveTest()
+        currentTestId = testItem.id
+//        NavigationHelper.navigateToTestScreen(requireActivity(), testItem.id)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TestListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(filter: String, testSeriesName: String) =
             TestListFragment().apply {

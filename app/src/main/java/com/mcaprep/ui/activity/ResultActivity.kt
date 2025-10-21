@@ -5,25 +5,26 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.tabs.TabLayoutMediator
-import com.mcaprep.databinding.ActivityTestSeriesBinding
-import com.mcaprep.ui.adapter.TestSeriesViewPagerAdapter
+import com.mcaprep.databinding.ActivityResultBinding
+import com.mcaprep.ui.adapter.ResultViewPagerAdapter
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
+import com.mcaprep.utils.Constants.COUNT
+import com.mcaprep.utils.Constants.TEST_ID
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
 @AndroidEntryPoint
-class TestSeriesActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityTestSeriesBinding
+class ResultActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityResultBinding
     private val testSeriesViewModel: TestSeriesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityTestSeriesBinding.inflate(layoutInflater)
+        binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -31,32 +32,25 @@ class TestSeriesActivity : AppCompatActivity() {
             insets
         }
 
-        binding.toolbar.headerTitle.text = "Test Series"
+        val testId  = intent.getStringExtra(TEST_ID)
+        val count  = intent.getIntExtra(COUNT, 1)
+
+        binding.toolbar.headerTitle.text = "NIMCET 2025 Official"
         binding.toolbar.headerTitle.visibility = View.VISIBLE
         binding.toolbar.actionBarIcon.setOnClickListener {
             onBackPressed()
         }
 
-        val tabs = listOf("Mocks", "PYQ")
-        val testSeriesName = "NIMCET"
-        binding.viewPager.adapter = TestSeriesViewPagerAdapter(this, tabs, testSeriesName)
+
+        val tabs = listOf("Analysis", "Solution")
+        binding.viewPager.adapter = ResultViewPagerAdapter(this, tabs)
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabs[position]
         }.attach()
 
-        binding.searchView.isIconified = false
-        binding.searchView.setIconifiedByDefault(false)
-        binding.searchView.clearFocus()
-
-        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean = true.also {
-                testSeriesViewModel.searchQuery.value = query ?: ""
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean = true.also {
-                testSeriesViewModel.searchQuery.value = newText ?: ""
-            }
-        })
+        if (testId != null) {
+            testSeriesViewModel.getTestHistory(testId, count)
+        }
     }
 }

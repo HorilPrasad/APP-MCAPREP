@@ -1,20 +1,34 @@
 package com.mcaprep.domain.mapper
 
 import com.mcaprep.data.local.entities.AnswerEntity
+import com.mcaprep.data.remote.model.DetailDto
 import com.mcaprep.data.remote.model.EndTestResponse
 import com.mcaprep.data.remote.model.ExamInfoDto
+import com.mcaprep.data.remote.model.LeaderBoardItemDto
+import com.mcaprep.data.remote.model.LeaderBoardValueDto
 import com.mcaprep.data.remote.model.QuestionDto
 import com.mcaprep.data.remote.model.ResultDto
 import com.mcaprep.data.remote.model.SolutionsDto
+import com.mcaprep.data.remote.model.SubjectItemDto
 import com.mcaprep.data.remote.model.TestDetailsDto
+import com.mcaprep.data.remote.model.TestHistoryDto
+import com.mcaprep.data.remote.model.TestHistoryResponse
 import com.mcaprep.data.remote.model.TestItemDto
+import com.mcaprep.data.remote.model.WeightageDto
+import com.mcaprep.domain.model.AnsweredOption
+import com.mcaprep.domain.model.Detail
 import com.mcaprep.domain.model.ExamInfo
+import com.mcaprep.domain.model.LeaderBoardItem
+import com.mcaprep.domain.model.LeaderBoardValue
 import com.mcaprep.domain.model.Question
 import com.mcaprep.domain.model.Result
 import com.mcaprep.domain.model.ResultWithQuestion
 import com.mcaprep.domain.model.Solutions
+import com.mcaprep.domain.model.SubjectItem
 import com.mcaprep.domain.model.TestDetails
+import com.mcaprep.domain.model.TestHistory
 import com.mcaprep.domain.model.TestItem
+import com.mcaprep.domain.model.Weightage
 
 fun TestItemDto.toDomain() = TestItem(
     id = id,
@@ -58,6 +72,9 @@ fun QuestionDto.toDomain() = Question(
     topic = topic,
     difficulty = difficulty,
     questionImage = questionImage,
+    solution = solution,
+    solutionImage = solutionImage,
+    explanation = explanation,
     opA = opA,
     opB = opB,
     opC = opC,
@@ -105,3 +122,58 @@ fun SolutionsDto.toDomain() = Solutions(
     option = option
 )
 
+fun AnswerEntity.toDomain() = AnsweredOption(
+    testId = testId,
+    questionId = questionId,
+    selectedOption = selectedOption,
+    markForReview = markForReview
+)
+
+fun TestHistoryDto.toDomain() = TestHistory(
+    detail = detail.toDomain(),
+    leaderBoard = leaderBoard.map { it.toDomain() }
+)
+
+fun DetailDto.toDomain() = Detail(
+    id = id,
+    name = name,
+    schedule = schedule,
+    duration = duration,
+    difficulty = difficulty,
+    premium = premium,
+    weightage = weightage.toDomain(),
+    questions = questions.map { it.toDomain() },
+    flag = flag,
+    isSectionWise = isSectionWise,
+    createdAt = createdAt,
+    updatedAt = updatedAt,
+    totalScore = totalScore,
+    attempted = attempted,
+    score = score,
+    count = count
+)
+
+fun WeightageDto.toDomain() = Weightage(
+    id = id,
+    name = name,
+    subject = subject.map { it.toDomain() },
+    createdAt = createdAt,
+    updatedAt = updatedAt
+)
+
+fun SubjectItemDto.toDomain() = SubjectItem(
+    id = id,
+    name = name,
+    weight = weight,
+    negative = negative
+)
+
+fun LeaderBoardItemDto.toDomain() = LeaderBoardItem(
+    key = key,
+    value = value.toDomain()
+)
+
+fun LeaderBoardValueDto.toDomain() = LeaderBoardValue(
+    name = name,
+    marks = marks,
+)

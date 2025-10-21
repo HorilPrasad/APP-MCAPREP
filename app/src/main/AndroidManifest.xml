@@ -8,17 +8,21 @@
         android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/mcaprep_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/mcaprep_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MCAPREP"
-        tools:targetApi="31">
+        tools:targetApi="33">
+        <activity
+            android:name=".ui.activity.ResultActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.TestScreenActivity"
-            android:theme="@style/TestScreenTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TestScreenTheme" />
         <activity
             android:name=".ui.activity.SplashScreen"
             android:exported="true">

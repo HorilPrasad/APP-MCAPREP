@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="@color/background"
     tools:context=".ui.fragment.QuestionFragment">
 
@@ -72,7 +73,7 @@
             android:gravity="center"
             android:paddingHorizontal="5dp"
             android:text="- 1"
-            android:textColor="@color/secondaryColor"
+            android:textColor="@color/secondaryColorRed"
             android:textStyle="bold" />
 
         <Space
@@ -89,6 +90,7 @@
             app:tint="@color/primaryColor" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/mark_for_review"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"

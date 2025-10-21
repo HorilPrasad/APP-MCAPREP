@@ -100,7 +100,7 @@ class LoginFragment : Fragment() {
     private fun showUser(user: User) {
         binding.loader.visibility = View.GONE
         binding.loader.cancelAnimation()
-        authViewModel.setLoggedIn(user.name)
+        authViewModel.setLoggedIn(user.name, user.id)
         NavigationHelper.navigateToMain(requireActivity())
     }
 

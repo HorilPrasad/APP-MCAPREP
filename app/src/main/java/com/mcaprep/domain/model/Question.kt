@@ -15,6 +15,9 @@ data class Question(
     val topic: String?,
     val difficulty: String?,
     val questionImage: String?,
+    val solution: String?,
+    val solutionImage: String?,
+    val explanation: String?,
     val opA: String?,
     val opB: String?,
     val opC: String?,
@@ -34,3 +37,9 @@ data class ExamInfo(
     val id: String?
 ): Parcelable
 
+
+data class QuestionCountCumulative(
+    val total: Int,
+    val attempted: Int,
+    val correct: Int
+)

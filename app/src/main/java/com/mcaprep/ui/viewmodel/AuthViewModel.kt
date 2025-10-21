@@ -63,9 +63,10 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun setLoggedIn(username: String) {
+    fun setLoggedIn(username: String, userId: String) {
         pref.setLoggedIn(true)
         pref.setUsername(username)
+        pref.setUserId(userId)
     }
 
 }

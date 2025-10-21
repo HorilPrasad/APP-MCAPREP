@@ -6,6 +6,7 @@ object Constants {
     const val APP_DATABASE = "mcaprep_database"
     const val PREFS_MCAPREP = "mcaprep_prefs"
     const val TEST_ID = "testId"
+    const val COUNT = "count"
 
     val APP_ENV = Environment.DEV
 }

@@ -11,4 +11,5 @@
     <color name="background">#E6EEF3</color>
     <color name="gray">#989797</color>
     <color name="secondaryColorRed">#FF6F61</color>
+    <color name="markReviewColor">#FAE850</color>
 </resources>

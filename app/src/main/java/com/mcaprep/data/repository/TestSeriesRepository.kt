@@ -3,6 +3,7 @@ package com.mcaprep.data.repository
 import com.mcaprep.data.remote.model.EndTestRequest
 import com.mcaprep.data.remote.model.EndTestResponse
 import com.mcaprep.data.remote.model.StartExistingTestResponse
+import com.mcaprep.data.remote.model.TestHistoryResponse
 import com.mcaprep.data.remote.model.TestSeriesResponse
 
 interface TestSeriesRepository {
@@ -12,4 +13,7 @@ interface TestSeriesRepository {
 
     suspend fun endTest(endTestRequest: EndTestRequest): EndTestResponse
 
+    suspend fun getActiveTest(): String
+
+    suspend fun getTestHistory(id: String, count: Int): TestHistoryResponse
 }

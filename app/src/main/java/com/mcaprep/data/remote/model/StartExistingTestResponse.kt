@@ -42,6 +42,9 @@ data class QuestionDto(
     val topic: String? = null,
     val difficulty: String? = null,
     val questionImage: String? = null,
+    val solution: String? = null,
+    val solutionImage: String? = null,
+    val explanation: String? = null,
     @SerialName("op_A")
     val opA: String? = null,
     @SerialName("op_B")
@@ -56,6 +59,7 @@ data class QuestionDto(
     val createdAt: String? = null,
     val updatedAt: String? = null,
     val negative: Float? = null,
+    @SerialName("selected_option")
     val selectedOption: String? = null
 )
 @Serializable
