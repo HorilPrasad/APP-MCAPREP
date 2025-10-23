@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg2"
+    tools:context=".ui.fragment.HomeFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_bg2"
+        android:orientation="vertical"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/text_size_medium">
+
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_backward"
+                android:tint="@color/primaryColor"
+                tools:ignore="UseAppTint" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="@dimen/text_size_medium" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/active_test_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/coin"
+                tools:ignore="UseAppTint" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="Success is built one step at a time"
+                android:textAlignment="center"
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="keep the streak alive and let every day bring you closer to your dreams !"
+                android:textAlignment="center"
+                android:textColor="@color/primaryColor"
+                android:textSize="@dimen/text_size_small" />
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

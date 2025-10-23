@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import com.faltenreich.skeletonlayout.createSkeleton
@@ -22,6 +23,7 @@ import com.mcaprep.utils.NavigationHelper
 import com.mcaprep.utils.extentions.observeResource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -62,6 +64,10 @@ class HomeFragment : Fragment() {
         }
         binding.mahCet.setOnClickListener {
             NavigationHelper.navigateToTestSeries(requireActivity(), "MAHMCA")
+        }
+
+        binding.userImageCard.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
 
         authViewModel.notificationImageResponse.observeResource(
