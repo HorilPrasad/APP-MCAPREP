@@ -43,9 +43,6 @@ class ResultDialog : DialogFragment() {
         binding.totalScore.text = "/${result?.totalScore}"
         binding.score.text = result?.score
         binding.attempted.text = result?.solution?.size.toString()
-        dialog?.setOnCancelListener { dialog ->
-            NavigationHelper.navigateToTestSeries(requireActivity())
-        }
         result?.score?.toFloat()?.let {
             if (it > 0) {
                 binding.score.setTextColor("#54A156".toColorInt())

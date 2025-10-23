@@ -11,6 +11,7 @@ import com.mcaprep.ui.activity.ResultActivity
 import com.mcaprep.ui.activity.TestScreenActivity
 import com.mcaprep.ui.activity.TestSeriesActivity
 import com.mcaprep.utils.Constants.COUNT
+import com.mcaprep.utils.Constants.EXAM_NAME
 import com.mcaprep.utils.Constants.TEST_ID
 
 object NavigationHelper {
@@ -37,8 +38,9 @@ object NavigationHelper {
         activity.startActivity(intent, options?.toBundle())
     }
 
-    fun navigateToTestSeries(activity: Activity) {
+    fun navigateToTestSeries(activity: Activity, examName: String) {
         val intent = Intent(activity, TestSeriesActivity::class.java)
+        intent.putExtra(EXAM_NAME, examName)
         activity.startActivity(intent, options?.toBundle())
     }
 

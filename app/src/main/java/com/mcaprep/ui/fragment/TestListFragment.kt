@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.mcaprep.R
 import com.mcaprep.databinding.FragmentTestListBinding
 import com.mcaprep.domain.model.TestItem
 import com.mcaprep.ui.adapter.OnClickListeners
@@ -70,7 +69,12 @@ class TestListFragment : Fragment(), OnClickListeners {
             "PYQ" -> "PYQ"
             else -> ""
         }
-        testSeriesViewModel.getTestSeries(type)
+        val testName = if (testSeriesName?.contains("NIMCET") == true) {
+            "SW$type"
+        } else {
+            "$testSeriesName$type"
+        }
+        testSeriesViewModel.getTestSeries(testName)
 
         testSeriesViewModel.activeTest.observeResource(
             owner = viewLifecycleOwner,
@@ -115,8 +119,8 @@ class TestListFragment : Fragment(), OnClickListeners {
     }
 
     override fun onClick(testItem: TestItem) {
-        testSeriesViewModel.getActiveTest()
         currentTestId = testItem.id
+        testSeriesViewModel.getActiveTest()
 //        NavigationHelper.navigateToTestScreen(requireActivity(), testItem.id)
     }
 

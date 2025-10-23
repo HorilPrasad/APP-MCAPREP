@@ -5,6 +5,7 @@ import com.mcaprep.data.remote.model.EndTestResponse
 import com.mcaprep.data.remote.model.LoginRequest
 import com.mcaprep.data.remote.model.LoginResponse
 import com.mcaprep.data.remote.model.NotificationImageResponse
+import com.mcaprep.data.remote.model.OtherTestSeriesResponse
 import com.mcaprep.data.remote.model.StartExistingTestRequest
 import com.mcaprep.data.remote.model.StartExistingTestResponse
 import com.mcaprep.data.remote.model.TestHistoryResponse
@@ -24,7 +25,7 @@ interface ApiService {
     @GET("notificationImage")
     suspend fun notificationImage(): Response<NotificationImageResponse>
 
-    @POST("series")
+    @POST("sectionWise/series")
     suspend fun getTestSeries(@Body testSeriesRequest: TestSeriesRequest): Response<TestSeriesResponse>
 
     @POST("test/start-existing-test")
@@ -38,4 +39,11 @@ interface ApiService {
 
     @GET("test-history/{id}/count/{count}")
     suspend fun getTestHistory(@Path("id") id: String, @Path("count") count: Int): Response<TestHistoryResponse>
+
+    @GET("series/mock-others")
+    suspend fun getMockOthers(): Response<OtherTestSeriesResponse>
+
+    @GET("series/pyq-others")
+    suspend fun getPyqOthers(): Response<OtherTestSeriesResponse>
+
 }

@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mcaprep.databinding.ActivityTestSeriesBinding
 import com.mcaprep.ui.adapter.TestSeriesViewPagerAdapter
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
+import com.mcaprep.utils.Constants.EXAM_NAME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,15 +31,15 @@ class TestSeriesActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        binding.toolbar.headerTitle.text = "Test Series"
+        val testSeriesName = intent.getStringExtra(EXAM_NAME) ?: ""
+        binding.toolbar.headerTitle.text = testSeriesName
         binding.toolbar.headerTitle.visibility = View.VISIBLE
         binding.toolbar.actionBarIcon.setOnClickListener {
             onBackPressed()
         }
 
         val tabs = listOf("Mocks", "PYQ")
-        val testSeriesName = "NIMCET"
+
         binding.viewPager.adapter = TestSeriesViewPagerAdapter(this, tabs, testSeriesName)
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->

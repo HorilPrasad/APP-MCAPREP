@@ -4,6 +4,7 @@ import android.util.Log
 import com.mcaprep.data.remote.api.ApiService
 import com.mcaprep.data.remote.model.EndTestRequest
 import com.mcaprep.data.remote.model.EndTestResponse
+import com.mcaprep.data.remote.model.OtherTestSeriesResponse
 import com.mcaprep.data.remote.model.StartExistingTestRequest
 import com.mcaprep.data.remote.model.StartExistingTestResponse
 import com.mcaprep.data.remote.model.TestHistoryResponse
@@ -79,6 +80,32 @@ class TestSeriesRepositoryImpl @Inject constructor(
     ): TestHistoryResponse {
         try {
             val response = apiService.getTestHistory(id, count)
+            if (response.isSuccessful) {
+                return response.body() ?: throw Exception("Response body is null")
+            } else {
+                throw Exception("Server error: ${response.errorBody()?.string()}")
+            }
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    override suspend fun getMockOthers(): OtherTestSeriesResponse {
+        try {
+            val response = apiService.getMockOthers()
+            if (response.isSuccessful) {
+                return response.body() ?: throw Exception("Response body is null")
+            } else {
+                throw Exception("Server error: ${response.errorBody()?.string()}")
+            }
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    override suspend fun getPyqOthers(): OtherTestSeriesResponse {
+        try {
+            val response = apiService.getPyqOthers()
             if (response.isSuccessful) {
                 return response.body() ?: throw Exception("Response body is null")
             } else {

@@ -64,9 +64,11 @@ class AuthViewModel @Inject constructor(
     }
 
     fun setLoggedIn(username: String, userId: String) {
-        pref.setLoggedIn(true)
-        pref.setUsername(username)
-        pref.setUserId(userId)
+        viewModelScope.launch {
+            pref.setLoggedIn(true)
+            pref.setUsername(username)
+            pref.setUserId(userId)
+        }
     }
 
 }

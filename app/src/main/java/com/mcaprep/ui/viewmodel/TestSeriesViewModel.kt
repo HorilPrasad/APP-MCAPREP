@@ -59,12 +59,55 @@ class TestSeriesViewModel @Inject constructor(
 
 
     fun getTestSeries(type: String) {
+        if (type.contains("SW")) {
+            getNimcetSeries(type)
+        } else {
+            if (type.contains("MOCK"))
+                getMockOthers(type)
+            else
+                getPyqOthers(type)
+        }
+    }
+
+    fun getNimcetSeries(type: String) {
         viewModelScope.launch {
             _testSeries.value = Resource.Loading
             try {
                 val response = testSeriesRepository.getTestSeries(type)
                 val testItems = response.res.data.map { it.toDomain() }
                 _testSeries.value = Resource.Success(testItems)
+            } catch (e: Exception) {
+                _testSeries.value = Resource.Failure(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    fun getMockOthers(type: String) {
+        viewModelScope.launch {
+            _testSeries.value = Resource.Loading
+            try {
+                val response = testSeriesRepository.getMockOthers()
+                val testItem = response.res.find { it.id == type }?.tests?.map { it.toDomain() }
+                if (!testItem.isNullOrEmpty())
+                    _testSeries.value = Resource.Success(testItem)
+                else
+                    _testSeries.value = Resource.Failure("No test found")
+            } catch (e: Exception) {
+                _testSeries.value = Resource.Failure(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    fun getPyqOthers(type: String) {
+        viewModelScope.launch {
+            _testSeries.value = Resource.Loading
+            try {
+                val response = testSeriesRepository.getPyqOthers()
+                val testItem = response.res.find { it.id == type }?.tests?.map { it.toDomain() }
+                if (!testItem.isNullOrEmpty())
+                    _testSeries.value = Resource.Success(testItem)
+                else
+                    _testSeries.value = Resource.Failure("No test found")
             } catch (e: Exception) {
                 _testSeries.value = Resource.Failure(e.message ?: "Unknown error")
             }
