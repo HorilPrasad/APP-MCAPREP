@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/exam_instructions_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.fragment.ExamInstructionsFragment">
+
+    <!-- Scrollable content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/instruction_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- Title (optional dynamic) -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/instructions_title"
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="General Instructions"
+                android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <!-- Main Text -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/instructions_text"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="?attr/colorOnBackground"
+                android:lineSpacingExtra="4dp"
+                android:text="Loading instructions..."
+                android:paddingBottom="24dp" />
+
+            <!-- Checkbox (only visible on 2nd screen) -->
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/agree_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I have read all the instructions and am ready to start the test"
+                android:visibility="gone"
+                android:paddingBottom="16dp" />
+
+            <!-- Button Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:weightSum="2"
+                android:paddingTop="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/previous_button"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Previous"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/next_button"
+                    style="@style/Widget.Material3.Button.FilledButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Next" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/start_test_button"
+                    style="@style/Widget.Material3.Button.FilledTonalButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Start Test"
+                    android:visibility="gone"
+                    android:enabled="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
