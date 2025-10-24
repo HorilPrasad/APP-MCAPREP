@@ -16,4 +16,5 @@
     <color name="accentColor">#4CAF50</color>
     <color name="yellow">#FFC107</color>
     <color name="dividerColor">#1E000000</color>
+    <color name="teal">#008080</color>
 </resources>
