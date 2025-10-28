@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/result_nav_graph"
+    app:startDestination="@id/performance_fragment">
+    <fragment
+        android:id="@+id/performance_fragment"
+        android:name="com.mcaprep.ui.fragment.PerformanceFragment"
+        tools:layout="@layout/fragment_preformance">
+        <action
+            android:id="@+id/action_performance_fragment_to_solution_fragment"
+            app:destination="@id/solution_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/solution_fragment"
+        android:name="com.mcaprep.ui.fragment.SolutionFragment"
+        tools:layout="@layout/fragment_solution">
+    </fragment>
+
+
+</navigation>

@@ -67,7 +67,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.userImageCard.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            NavigationHelper.navigateToProfile(requireActivity())
+        }
+
+        binding.testBuilder.setOnClickListener {
+            NavigationHelper.navigateToTestBuilder(requireActivity())
         }
 
         authViewModel.notificationImageResponse.observeResource(

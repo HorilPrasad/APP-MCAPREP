@@ -170,7 +170,7 @@
                                     android:id="@+id/nimcet"
                                     android:layout_width="150dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/padding_medium"
+                                    android:layout_marginEnd="@dimen/margin_small"
                                     app:cardElevation="4dp"
                                     app:cardCornerRadius="12dp"
                                     app:cardUseCompatPadding="true">
@@ -208,7 +208,7 @@
                                     android:id="@+id/cuet"
                                     android:layout_width="150dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/padding_medium"
+                                    android:layout_marginEnd="@dimen/margin_small"
                                     app:cardElevation="4dp"
                                     app:cardCornerRadius="12dp"
                                     app:cardUseCompatPadding="true">
@@ -246,7 +246,7 @@
                                     android:id="@+id/mah_cet"
                                     android:layout_width="150dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginEnd="@dimen/padding_medium"
+                                    android:layout_marginEnd="@dimen/margin_small"
                                     app:cardElevation="4dp"
                                     app:cardCornerRadius="12dp"
                                     app:cardUseCompatPadding="true">
@@ -613,9 +613,9 @@
                         android:paddingHorizontal="@dimen/padding_medium">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="0dp"
+                            android:id="@+id/test_builder"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginEnd="@dimen/padding_small"
                             android:elevation="4dp"
                             app:cardCornerRadius="12dp"
@@ -638,7 +638,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentStart="true"
                                     android:layout_alignParentTop="true"
-                                    android:text="Subject Sprint"
+                                    android:text="Create your own test"
                                     android:textColor="@color/primaryColor"
                                     android:textSize="@dimen/text_size_medium"
                                     android:textStyle="bold" />
@@ -649,7 +649,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/subject_sprint"
                                     android:layout_marginTop="5dp"
-                                    android:text="Focus on subjects"
+                                    android:text="Focus on topics or subjects"
                                     android:textColor="@color/primaryColor"
                                     android:textSize="@dimen/text_size_small" />
 
@@ -685,6 +685,7 @@
                             android:layout_marginStart="@dimen/padding_small"
                             android:elevation="4dp"
                             app:cardCornerRadius="12dp"
+                            android:visibility="gone"
                             app:cardPreventCornerOverlap="true"
                             app:cardUseCompatPadding="true">
 

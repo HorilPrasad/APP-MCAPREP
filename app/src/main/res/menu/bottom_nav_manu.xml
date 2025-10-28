@@ -10,9 +10,9 @@
         android:title="@string/mocks" />
 
     <item
-        android:id="@+id/pyq"
+        android:id="@+id/contact_us"
         android:icon="@drawable/history_icon"
-        android:title="@string/pyq" />
+        android:title="@string/contact" />
     <item
         android:id="@+id/pricing"
         android:icon="@drawable/icon_rupie"

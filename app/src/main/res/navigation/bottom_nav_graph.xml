@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.mcaprep.ui.fragment.HomeFragment"
+        tools:layout="@layout/fragment_home"
         android:label="Home" >
 
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mcaprep.ui.fragment.ProfileFragment"
+        tools:layout="@layout/fragment_profile"
         android:label="Profile" />
+    <fragment
+        android:id="@+id/contact_fragment"
+        android:name="com.mcaprep.ui.fragment.ContactFragment"
+        tools:layout="@layout/fragment_contact"
+        android:label="Contact US" />
 
 
 </navigation>

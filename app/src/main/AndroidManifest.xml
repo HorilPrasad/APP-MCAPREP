@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MCAPREP"
         tools:targetApi="33">
         <activity
+            android:name=".ui.activity.TestBuilderActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.ProfileActivity"
             android:exported="false" />
         <activity
