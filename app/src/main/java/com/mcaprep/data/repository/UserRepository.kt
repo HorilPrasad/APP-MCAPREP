@@ -1,4 +1,7 @@
 package com.mcaprep.data.repository
 
-class UserRepository {
+import com.mcaprep.data.local.entities.UserEntity
+
+interface UserRepository {
+    suspend fun getUser(id: String): UserEntity
 }
