@@ -1,201 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="180dp"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
+    android:id="@+id/test_item_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/padding_medium"
     app:cardElevation="4dp"
-    android:clipToPadding="true"
-    app:cardPreventCornerOverlap="true"
+    app:cardCornerRadius="12dp"
     app:cardUseCompatPadding="true">
 
-
-    <ImageView
-        android:id="@+id/test_item_bg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/test_card_bg"
-        android:src="@drawable/gradient_bg2"
-        android:scaleType="centerCrop"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium"
+        android:background="@color/white">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/padding_medium">
+        <!-- Test Icon with Status Badge -->
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="60dp"
+            android:background="@drawable/icon_background1"
+            android:clipToOutline="true">
 
+            <ImageView
+                android:id="@+id/test_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_math" />
+
+            <TextView
+                android:id="@+id/test_attempt_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:background="@drawable/badge_attempted"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp"
+                android:gravity="center"
+                android:text="Attempted"
+                android:textColor="@color/white"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+
+        <!-- Test Details -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/padding_medium">
+
+            <!-- Test Name and Difficulty Tag -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/test_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Practice test- 01"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <!-- Question & Time Details -->
+            <TextView
+                android:id="@+id/test_question_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="19 Questions | 25 Minutes | Hard"
+                android:textColor="@color/secondaryColor"
+                android:textSize="12sp" />
+
+
+
+            <!-- Additional Info (Marks & Attempts) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/test_marks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="76 Marks"
+                    android:textColor="@color/secondaryColor"
+                    android:textSize="11sp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:background="@color/secondaryColor" />
+
+                <TextView
+                    android:id="@+id/test_attempt_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="329 Attempted"
+                    android:textColor="@color/secondaryColor"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Available Now"
+                android:textColor="@color/lightGreen"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Start Button -->
         <TextView
-            android:id="@+id/test_name"
+            android:id="@+id/test_start_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/test_difficulty"
-            android:text="Practice test- 01"
-            android:textColor="@color/primaryColor"
-            android:textSize="@dimen/text_size_medium"
-            android:textStyle="bold" />
+            android:layout_gravity="center"
+            android:background="@drawable/button_accent"
+            android:padding="6dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:drawableStart="@drawable/icon_outline_play_circle"
+            android:drawableTint="@color/white" />
 
-        <LinearLayout
-            android:id="@+id/schedule_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/test_name"
-            android:paddingTop="@dimen/padding_small"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/clock_outline"/>
-            <TextView
-                android:id="@+id/test_schedule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_small"
-                android:text="20 Apr, 9:51 AM"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/question_details_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/schedule_layout"
-            android:paddingTop="@dimen/padding_small"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_question"/>
-            <TextView
-                android:id="@+id/test_question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_small"
-                android:text="Questions: 19 | 25 Minutes"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/marks_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/test_name"
-            android:layout_toEndOf="@+id/schedule_layout"
-            android:layout_marginStart="@dimen/padding_medium"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/padding_small">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_marks" />
-
-            <TextView
-                android:id="@+id/test_marks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/padding_small"
-                android:text="76 Marks" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/people_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/question_details_layout"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/padding_small"
-            android:visibility="visible">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_peoples" />
-            <TextView
-                android:id="@+id/test_attempted"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/padding_small"
-                android:text="Attempted:"/>
-
-            <TextView
-                android:id="@+id/test_attempt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/padding_small"
-                android:text="329" />
-        </LinearLayout>
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/test_report"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginTop="@dimen/padding_small"-->
-<!--            android:background="@drawable/icon_background2"-->
-<!--            android:paddingStart="12dp"-->
-<!--            android:paddingTop="5dp"-->
-<!--            android:paddingEnd="12dp"-->
-<!--            android:paddingBottom="5dp"-->
-<!--            android:text="View Report"-->
-<!--            android:textColor="#8B0FB8"-->
-<!--            android:textStyle="bold" />-->
-        <ImageView
-            android:id="@+id/test_premium"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/icon_premium" />
-
-
-        <!--        <LinearLayout-->
-<!--            android:id="@+id/start_btn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:paddingStart="12dp"-->
-<!--            android:paddingTop="5dp"-->
-<!--            android:paddingEnd="12dp"-->
-<!--            android:paddingBottom="5dp"-->
-<!--            android:background="@drawable/icon_background1">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Start"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="@color/primaryColor" />-->
-<!--            <ImageView-->
-<!--                android:layout_width="18dp"-->
-<!--                android:layout_height="18dp"-->
-<!--                android:layout_marginStart="@dimen/padding_small"-->
-<!--                android:src="@drawable/icon_start"/>-->
-<!--        </LinearLayout>-->
-
-        <TextView
-            android:id="@+id/test_difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="@dimen/padding_small"
-            android:background="@drawable/icon_background"
-            android:paddingStart="12dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="5dp"
-            android:text="Medium"
-            android:textColor="#B88E0F"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
