@@ -362,12 +362,40 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="190dp"
                                     android:alignmentMode="alignMargins"
-                                    android:columnCount="4"
+                                    android:columnCount="3"
                                     android:rowCount="2"
                                     android:rowOrderPreserved="false">
 
                                     <!-- Sample Item 1 -->
                                     <LinearLayout
+                                        android:id="@+id/topic_wise"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_columnWeight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <ImageView
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
+                                            android:background="@drawable/icon_background"
+                                            android:padding="12dp"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/icon_topic" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="Topic Wise"
+                                            android:textColor="@color/primaryColor"
+                                            android:textSize="@dimen/text_size_small"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:id="@+id/totd"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_columnWeight="1"
@@ -389,6 +417,33 @@
                                             android:layout_marginTop="8dp"
                                             android:gravity="center"
                                             android:text="TOTD"
+                                            android:textColor="@color/primaryColor"
+                                            android:textSize="@dimen/text_size_small"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:id="@+id/materials"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_columnWeight="1"
+                                        android:gravity="center"
+                                        android:orientation="vertical"
+                                        android:padding="8dp">
+
+                                        <ImageView
+                                            android:layout_width="56dp"
+                                            android:layout_height="56dp"
+                                            android:background="@drawable/icon_background1"
+                                            android:padding="12dp"
+                                            android:scaleType="centerInside"
+                                            android:src="@drawable/icon_material" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="8dp"
+                                            android:gravity="center"
+                                            android:text="Materials"
                                             android:textColor="@color/primaryColor"
                                             android:textSize="@dimen/text_size_small"
                                             android:textStyle="bold" />
@@ -449,32 +504,7 @@
                                             android:textStyle="bold" />
                                     </LinearLayout>
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_columnWeight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:padding="8dp">
 
-                                        <ImageView
-                                            android:layout_width="56dp"
-                                            android:layout_height="56dp"
-                                            android:background="@drawable/icon_background"
-                                            android:padding="12dp"
-                                            android:scaleType="centerInside"
-                                            android:src="@drawable/icon_topic" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:gravity="center"
-                                            android:text="Topic Wise"
-                                            android:textColor="@color/primaryColor"
-                                            android:textSize="@dimen/text_size_small"
-                                            android:textStyle="bold" />
-                                    </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="0dp"
@@ -504,86 +534,86 @@
                                     </LinearLayout>
 
                                     <!-- Sample Item 2 -->
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_columnWeight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:padding="8dp">
+<!--                                    <LinearLayout-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_columnWeight="1"-->
+<!--                                        android:gravity="center"-->
+<!--                                        android:orientation="vertical"-->
+<!--                                        android:padding="8dp">-->
 
-                                        <ImageView
-                                            android:layout_width="56dp"
-                                            android:layout_height="56dp"
-                                            android:background="@drawable/icon_background2"
-                                            android:padding="12dp"
-                                            android:scaleType="centerInside"
-                                            android:src="@drawable/icon_mah" />
+<!--                                        <ImageView-->
+<!--                                            android:layout_width="56dp"-->
+<!--                                            android:layout_height="56dp"-->
+<!--                                            android:background="@drawable/icon_background2"-->
+<!--                                            android:padding="12dp"-->
+<!--                                            android:scaleType="centerInside"-->
+<!--                                            android:src="@drawable/icon_mah" />-->
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:gravity="center"
-                                            android:text="MAH CET"
-                                            android:textColor="@color/primaryColor"
-                                            android:textSize="@dimen/text_size_small"
-                                            android:textStyle="bold" />
-                                    </LinearLayout>
+<!--                                        <TextView-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginTop="8dp"-->
+<!--                                            android:gravity="center"-->
+<!--                                            android:text="MAH CET"-->
+<!--                                            android:textColor="@color/primaryColor"-->
+<!--                                            android:textSize="@dimen/text_size_small"-->
+<!--                                            android:textStyle="bold" />-->
+<!--                                    </LinearLayout>-->
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_columnWeight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:padding="8dp">
+<!--                                    <LinearLayout-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_columnWeight="1"-->
+<!--                                        android:gravity="center"-->
+<!--                                        android:orientation="vertical"-->
+<!--                                        android:padding="8dp">-->
 
-                                        <ImageView
-                                            android:layout_width="56dp"
-                                            android:layout_height="56dp"
-                                            android:background="@drawable/icon_background"
-                                            android:padding="12dp"
-                                            android:scaleType="centerInside"
-                                            android:src="@drawable/icon_cuet" />
+<!--                                        <ImageView-->
+<!--                                            android:layout_width="56dp"-->
+<!--                                            android:layout_height="56dp"-->
+<!--                                            android:background="@drawable/icon_background"-->
+<!--                                            android:padding="12dp"-->
+<!--                                            android:scaleType="centerInside"-->
+<!--                                            android:src="@drawable/icon_cuet" />-->
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:gravity="center"
-                                            android:text="CUET"
-                                            android:textColor="@color/primaryColor"
-                                            android:textSize="@dimen/text_size_small"
-                                            android:textStyle="bold" />
-                                    </LinearLayout>
+<!--                                        <TextView-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginTop="8dp"-->
+<!--                                            android:gravity="center"-->
+<!--                                            android:text="CUET"-->
+<!--                                            android:textColor="@color/primaryColor"-->
+<!--                                            android:textSize="@dimen/text_size_small"-->
+<!--                                            android:textStyle="bold" />-->
+<!--                                    </LinearLayout>-->
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_columnWeight="1"
-                                        android:gravity="center"
-                                        android:orientation="vertical"
-                                        android:padding="8dp">
+<!--                                    <LinearLayout-->
+<!--                                        android:layout_width="0dp"-->
+<!--                                        android:layout_height="wrap_content"-->
+<!--                                        android:layout_columnWeight="1"-->
+<!--                                        android:gravity="center"-->
+<!--                                        android:orientation="vertical"-->
+<!--                                        android:padding="8dp">-->
 
-                                        <ImageView
-                                            android:layout_width="56dp"
-                                            android:layout_height="56dp"
-                                            android:background="@drawable/icon_background1"
-                                            android:padding="12dp"
-                                            android:scaleType="centerInside"
-                                            android:src="@drawable/icon_material" />
+<!--                                        <ImageView-->
+<!--                                            android:layout_width="56dp"-->
+<!--                                            android:layout_height="56dp"-->
+<!--                                            android:background="@drawable/icon_background1"-->
+<!--                                            android:padding="12dp"-->
+<!--                                            android:scaleType="centerInside"-->
+<!--                                            android:src="@drawable/icon_material" />-->
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginTop="8dp"
-                                            android:gravity="center"
-                                            android:text="Materials"
-                                            android:textColor="@color/primaryColor"
-                                            android:textSize="@dimen/text_size_small"
-                                            android:textStyle="bold" />
-                                    </LinearLayout>
+<!--                                        <TextView-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginTop="8dp"-->
+<!--                                            android:gravity="center"-->
+<!--                                            android:text="Materials"-->
+<!--                                            android:textColor="@color/primaryColor"-->
+<!--                                            android:textSize="@dimen/text_size_small"-->
+<!--                                            android:textStyle="bold" />-->
+<!--                                    </LinearLayout>-->
 
                                 </GridLayout>
 

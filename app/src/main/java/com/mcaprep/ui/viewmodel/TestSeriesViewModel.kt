@@ -64,12 +64,26 @@ class TestSeriesViewModel @Inject constructor(
         } else {
             if (type.contains("MOCK"))
                 getMockOthers(type)
-            else
+            else if (type.contains("PYQ"))
                 getPyqOthers(type)
+            else
+                getSeries(type)
         }
     }
 
     fun getNimcetSeries(type: String) {
+        viewModelScope.launch {
+            _testSeries.value = Resource.Loading
+            try {
+                val response = testSeriesRepository.getSectionWiseTestSeries(type)
+                val testItems = response.res.data.map { it.toDomain() }
+                _testSeries.value = Resource.Success(testItems)
+            } catch (e: Exception) {
+                _testSeries.value = Resource.Failure(e.message ?: "Unknown error")
+            }
+        }
+    }
+    fun getSeries(type: String) {
         viewModelScope.launch {
             _testSeries.value = Resource.Loading
             try {

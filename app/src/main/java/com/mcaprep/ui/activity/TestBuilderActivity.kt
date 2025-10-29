@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.mcaprep.databinding.ActivityTestBuilderBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TestBuilderActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTestBuilderBinding
 

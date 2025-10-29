@@ -46,6 +46,7 @@ class TestScreenActivity : AppCompatActivity() {
     private var currentPosition: Int = 0
     private var attempted: Int = 0
     private var markForReview: Int = 0
+    private var totalQuestion: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -166,7 +167,8 @@ class TestScreenActivity : AppCompatActivity() {
         timer = startTimer(details.remainingSecond, binding.remainingTime) {
             testSeriesViewModel.endTest()
         }
-        binding.navigationDrawer.totalQuestion.text = questions.size.toString()
+        totalQuestion = questions.size
+        binding.navigationDrawer.totalQuestion.text = totalQuestion.toString()
         binding.navigationDrawer.unattemptedQuestion.text = (questions.size - (attempted + markForReview)).toString()
         binding.testName.text = details.name
         binding.navigationDrawer.testName.text = details.name
@@ -236,7 +238,7 @@ class TestScreenActivity : AppCompatActivity() {
     }
 
     private fun showSubmitTestDialog() {
-        val dialog = SubmitTestDialog.newInstance()
+        val dialog = SubmitTestDialog.newInstance(totalQuestion, attempted, markForReview)
         dialog.show(supportFragmentManager, "SubmitTestDialog")
     }
 

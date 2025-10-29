@@ -25,8 +25,11 @@ interface ApiService {
     @GET("notificationImage")
     suspend fun notificationImage(): Response<NotificationImageResponse>
 
-    @POST("sectionWise/series")
+    @POST("series")
     suspend fun getTestSeries(@Body testSeriesRequest: TestSeriesRequest): Response<TestSeriesResponse>
+
+    @POST("sectionWise/series")
+    suspend fun getSectionWiseTestSeries(@Body testSeriesRequest: TestSeriesRequest): Response<TestSeriesResponse>
 
     @POST("test/start-existing-test")
     suspend fun startExistingTest(@Body startExistingTestRequest: StartExistingTestRequest): Response<StartExistingTestResponse>

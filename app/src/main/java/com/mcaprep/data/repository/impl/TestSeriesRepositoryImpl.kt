@@ -30,6 +30,19 @@ class TestSeriesRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getSectionWiseTestSeries(type: String): TestSeriesResponse {
+        try {
+            val response = apiService.getSectionWiseTestSeries(TestSeriesRequest(type))
+            if (response.isSuccessful) {
+                return response.body() ?: throw Exception("Response body is null")
+            } else {
+                throw Exception("Server error: ${response.errorBody()?.string()}")
+            }
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
     override suspend fun startExistingTest(testId: String): StartExistingTestResponse {
         try {
             val response = apiService.startExistingTest(StartExistingTestRequest(testId))

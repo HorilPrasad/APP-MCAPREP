@@ -89,13 +89,13 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginTop="8dp"
-                        app:progress="65"
-                        app:trackColor="#E0E0E0"
-                        app:indicatorColor="#3498DB" />
+<!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:progress="65"-->
+<!--                        app:trackColor="#E0E0E0"-->
+<!--                        app:indicatorColor="#3498DB" />-->
 
                     <TextView
                         android:layout_width="match_parent"
@@ -190,13 +190,13 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginTop="8dp"
-                        app:progress="30"
-                        app:trackColor="#E0E0E0"
-                        app:indicatorColor="#3498DB" />
+<!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:progress="30"-->
+<!--                        app:trackColor="#E0E0E0"-->
+<!--                        app:indicatorColor="#3498DB" />-->
 
                     <TextView
                         android:layout_width="match_parent"
@@ -291,13 +291,13 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginTop="8dp"
-                        app:progress="85"
-                        app:trackColor="#E0E0E0"
-                        app:indicatorColor="#3498DB" />
+<!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:progress="85"-->
+<!--                        app:trackColor="#E0E0E0"-->
+<!--                        app:indicatorColor="#3498DB" />-->
 
                     <TextView
                         android:layout_width="match_parent"
@@ -392,13 +392,13 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginTop="8dp"
-                        app:progress="45"
-                        app:trackColor="#E0E0E0"
-                        app:indicatorColor="#3498DB" />
+<!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:progress="45"-->
+<!--                        app:trackColor="#E0E0E0"-->
+<!--                        app:indicatorColor="#3498DB" />-->
 
                     <TextView
                         android:layout_width="match_parent"
@@ -493,13 +493,13 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginTop="8dp"
-                        app:progress="15"
-                        app:trackColor="#E0E0E0"
-                        app:indicatorColor="#3498DB" />
+<!--                    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="4dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:progress="15"-->
+<!--                        app:trackColor="#E0E0E0"-->
+<!--                        app:indicatorColor="#3498DB" />-->
 
                     <TextView
                         android:layout_width="match_parent"

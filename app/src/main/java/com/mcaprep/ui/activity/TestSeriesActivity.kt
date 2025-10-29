@@ -12,7 +12,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.mcaprep.databinding.ActivityTestSeriesBinding
 import com.mcaprep.ui.adapter.TestSeriesViewPagerAdapter
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
-import com.mcaprep.utils.Constants.EXAM_NAME
+import com.mcaprep.utils.Constants.CUET_MCA
+import com.mcaprep.utils.Constants.MAH_CET
+import com.mcaprep.utils.Constants.NIMCET
+import com.mcaprep.utils.Constants.TANCET
+import com.mcaprep.utils.Constants.TEST_NAME
+import com.mcaprep.utils.Constants.TEST_TYPE
+import com.mcaprep.utils.Constants.TWT
+import com.mcaprep.utils.Constants.WBJECA
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,20 +38,32 @@ class TestSeriesActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val testSeriesName = intent.getStringExtra(EXAM_NAME) ?: ""
+        val testSeriesName = intent.getStringExtra(TEST_NAME) ?: ""
+        val testType = intent.getStringExtra(TEST_TYPE) ?: ""
         binding.toolbar.headerTitle.text = testSeriesName
         binding.toolbar.headerTitle.visibility = View.VISIBLE
         binding.toolbar.actionBarIcon.setOnClickListener {
             onBackPressed()
         }
 
-        val tabs = listOf("Mocks", "PYQ")
+        val tabs = if (testType == NIMCET || testType == CUET_MCA || testType == MAH_CET || testType == TANCET || testType == WBJECA) {
+            listOf("Mocks", "PYQ")
+        } else if (testType == TWT) {
+            listOf("Mathematics", "Reasoning", "Computer", "English")
+        } else {
+            emptyList()
+        }
 
-        binding.viewPager.adapter = TestSeriesViewPagerAdapter(this, tabs, testSeriesName)
+        binding.viewPager.adapter = TestSeriesViewPagerAdapter(this, tabs, testType)
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = tabs[position]
-        }.attach()
+        if (tabs.isNotEmpty()) {
+            binding.tabLayout.visibility = View.VISIBLE
+            TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+                tab.text = tabs[position]
+            }.attach()
+        } else {
+            binding.tabLayout.visibility = View.GONE
+        }
 
         binding.searchView.isIconified = false
         binding.searchView.setIconifiedByDefault(false)

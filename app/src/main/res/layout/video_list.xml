@@ -41,13 +41,13 @@
                     android:textColor="#7F8C8D"
                     android:layout_marginTop="4dp" />
 
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="12dp"
-                    app:progress="40"
-                    app:trackColor="#E0E0E0"
-                    app:indicatorColor="#3498DB" />
+<!--                <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="6dp"-->
+<!--                    android:layout_marginTop="12dp"-->
+<!--                    app:progress="40"-->
+<!--                    app:trackColor="#E0E0E0"-->
+<!--                    app:indicatorColor="#3498DB" />-->
 
             </LinearLayout>
 
@@ -545,13 +545,13 @@
 
                         </LinearLayout>
 
-                        <com.google.android.material.progressindicator.LinearProgressIndicator
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginTop="2dp"
-                            app:progress="65"
-                            app:trackColor="#E0E0E0"
-                            app:indicatorColor="#3498DB" />
+<!--                        <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="4dp"-->
+<!--                            android:layout_marginTop="2dp"-->
+<!--                            app:progress="65"-->
+<!--                            app:trackColor="#E0E0E0"-->
+<!--                            app:indicatorColor="#3498DB" />-->
 
                     </LinearLayout>
 
