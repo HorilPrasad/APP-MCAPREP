@@ -9,6 +9,7 @@ import com.mcaprep.data.remote.model.TestSeriesResponse
 
 interface TestSeriesRepository {
     suspend fun getTestSeries(type: String): TestSeriesResponse
+    suspend fun getSectionWiseTestSeries(type: String): TestSeriesResponse
 
     suspend fun startExistingTest(testId: String): StartExistingTestResponse
 

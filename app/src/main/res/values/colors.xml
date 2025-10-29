@@ -12,4 +12,12 @@
     <color name="gray">#989797</color>
     <color name="secondaryColorRed">#FF6F61</color>
     <color name="markReviewColor">#FAE850</color>
+    <color name="black_60">#99000000</color>
+    <color name="accentColor">#4CAF50</color>
+    <color name="yellow">#FFC107</color>
+    <color name="dividerColor">#1E000000</color>
+    <color name="teal">#008080</color>
+    <color name="difficulty_easy_text">#4CAF50</color>
+    <color name="difficulty_medium_text">#FF9800</color>
+    <color name="difficulty_hard_text">#F44336</color>
 </resources>

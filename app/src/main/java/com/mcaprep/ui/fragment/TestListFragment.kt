@@ -13,30 +13,37 @@ import com.mcaprep.domain.model.TestItem
 import com.mcaprep.ui.adapter.OnClickListeners
 import com.mcaprep.ui.adapter.TestListAdapter
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
+import com.mcaprep.utils.Constants.CUET_MCA
+import com.mcaprep.utils.Constants.MAH_CET
+import com.mcaprep.utils.Constants.NIMCET
+import com.mcaprep.utils.Constants.TANCET
+import com.mcaprep.utils.Constants.TWT
+import com.mcaprep.utils.Constants.WBJECA
 import com.mcaprep.utils.NavigationHelper
 import com.mcaprep.utils.extentions.observeResource
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val ARG_FILTER = "filter"
-private const val ARG_TEST_SERIES_NAME = "testSeriesName"
+private const val ARG_TEST_TYPE = "testType"
 
 
 @AndroidEntryPoint
 class TestListFragment : Fragment(), OnClickListeners {
     private var filter: String? = null
-    private var testSeriesName: String? = null
+    private var testType: String? = null
     private var _binding: FragmentTestListBinding? = null
     private val binding get() = _binding!!
     private val testSeriesViewModel: TestSeriesViewModel by viewModels()
     private var originalItems: List<TestItem> = listOf()
     private var currentTestId: String? = null
+    private var testName: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             filter = it.getString(ARG_FILTER)
-            testSeriesName = it.getString(ARG_TEST_SERIES_NAME)
+            testType = it.getString(ARG_TEST_TYPE)
         }
     }
 
@@ -63,16 +70,32 @@ class TestListFragment : Fragment(), OnClickListeners {
             Log.d("TestListFragment", "Search Query: $query")
             filterData(query)
         }
-
-        val type = when (filter) {
-            "Mocks" -> "MOCK"
-            "PYQ" -> "PYQ"
-            else -> ""
-        }
-        val testName = if (testSeriesName?.contains("NIMCET") == true) {
-            "SW$type"
-        } else {
-            "$testSeriesName$type"
+        when (testType) {
+            NIMCET -> {
+                if (filter == "Mocks")
+                    testName = "SWMOCK"
+                else
+                    testName = "SWPYQ"
+            }
+            CUET_MCA , MAH_CET , TANCET, WBJECA -> {
+                if (filter == "Mocks")
+                    testName = "${testType}MOCK"
+                else
+                    testName = "${testType}PYQ"
+            }
+            TWT -> {
+                if (filter == "Mathematics")
+                    testName = "TWTM"
+                else if (filter == "English")
+                    testName = "TWTE"
+                else if (filter == "Reasoning")
+                    testName = "TWTR"
+                else if (filter == "Computer")
+                    testName = "TWTC"
+            }
+            else -> {
+                testName = testType.toString()
+            }
         }
         testSeriesViewModel.getTestSeries(testName)
 
@@ -126,11 +149,11 @@ class TestListFragment : Fragment(), OnClickListeners {
 
     companion object {
         @JvmStatic
-        fun newInstance(filter: String, testSeriesName: String) =
+        fun newInstance(filter: String, testType: String) =
             TestListFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_FILTER, filter)
-                    putString(ARG_TEST_SERIES_NAME, testSeriesName)
+                    putString(ARG_TEST_TYPE, testType)
                 }
             }
     }

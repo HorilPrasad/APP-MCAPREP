@@ -8,17 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.mcaprep.R
 import com.mcaprep.data.local.PrefManager
-import com.mcaprep.databinding.FragmentAnalysisBinding
+import com.mcaprep.databinding.FragmentPreformanceBinding
 import com.mcaprep.domain.model.LeaderBoardItem
 import com.mcaprep.domain.model.Question
 import com.mcaprep.domain.model.QuestionCountCumulative
 import com.mcaprep.domain.model.RankedUser
 import com.mcaprep.domain.model.TestHistory
-import com.mcaprep.ui.adapter.LeaderboardAdapter
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
 import com.mcaprep.utils.extentions.observeResource
+import com.mcaprep.utils.formatUtcToIst
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlin.getValue
@@ -26,15 +27,15 @@ import kotlin.getValue
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AnalysisFragment.newInstance] factory method to
+ * Use the [PerformanceFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class AnalysisFragment : Fragment() {
+class PerformanceFragment : Fragment() {
 
     @Inject
     lateinit var pref: PrefManager
-    private var _binding: FragmentAnalysisBinding? = null
+    private var _binding: FragmentPreformanceBinding? = null
     private val binding get() = _binding!!
     private var rank = 0
     private var totalRank = 0
@@ -50,7 +51,7 @@ class AnalysisFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAnalysisBinding.inflate(inflater, container, false)
+        _binding = FragmentPreformanceBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -66,29 +67,37 @@ class AnalysisFragment : Fragment() {
     }
     @SuppressLint("SetTextI18n")
     private fun onSuccess(data: TestHistory) {
-        Log.e("AnalysisFragment", "onSuccess: ")
         binding.main.visibility = View.VISIBLE
         binding.loader.visibility = View.GONE
 
         val questionCountCumulative = processQuestionCumulative(data.detail.questions)
-        Log.i("AnalysisFragment", "onSuccess: $questionCountCumulative")
+        binding.testName.text = data.detail.name
         binding.score.text = data.detail.score.toString()
         binding.totalScore.text = "/${data.detail.totalScore}"
-        binding.totalQuestion.text = "/${data.detail.questions.size}"
-        binding.attempted.text = questionCountCumulative.attempted.toString()
+//        binding.totalQuestion.text = "/${data.detail.questions.size}"
+        binding.correct.text = questionCountCumulative.correct.toString()
+        binding.wrong.text = (questionCountCumulative.attempted - questionCountCumulative.correct).toString()
+        binding.skipped.text = (questionCountCumulative.total - questionCountCumulative.attempted).toString()
+        val attemptedDate = formatUtcToIst(data.detail.attempted)
+        val noOfQuestions = data.detail.questions.size
+        binding.questionDetails.text = "Completed on $attemptedDate • $noOfQuestions Questions"
 
-        val leaderboardData = processLeaderboardData(data.leaderBoard, pref.getUserId())
-        val leaderboardAdapter = LeaderboardAdapter(leaderboardData)
-        Log.i("AnalysisFragment", "onSuccess: $leaderboardData")
-        binding.leaderBordRecycler.adapter = leaderboardAdapter
+//        val leaderboardData = processLeaderboardData(data.leaderBoard, pref.getUserId())
+//        val leaderboardAdapter = LeaderboardAdapter(leaderboardData)
+//        Log.i("AnalysisFragment", "onSuccess: $leaderboardData")
+//        binding.leaderBordRecycler.adapter = leaderboardAdapter
 
-        binding.rank.text = rank.toString()
-        binding.allRank.text = "/$totalRank"
+        binding.rank.text = "#$rank"
+//        binding.allRank.text = "/$totalRank"
 
         if (questionCountCumulative.attempted > 0) {
             binding.accuracy.text = "${(questionCountCumulative.correct / questionCountCumulative.attempted) * 100}%"
         } else {
             binding.accuracy.text = "NA"
+        }
+
+        binding.btnAnalysis.setOnClickListener {
+            findNavController().navigate(R.id.solution_fragment)
         }
     }
 
@@ -124,7 +133,6 @@ class AnalysisFragment : Fragment() {
         leaderboard: List<LeaderBoardItem>,
         currentUserId: String
     ): List<RankedUser> {
-        Log.i("AnalysisFragment", "processLeaderboardData: $currentUserId")
         // 1. Sort users by marks in descending order.
         val sortedByMarks = leaderboard.sortedByDescending { it.value.marks }
 
@@ -165,6 +173,6 @@ class AnalysisFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = AnalysisFragment()
+        fun newInstance() = PerformanceFragment()
     }
 }

@@ -1,5 +1,6 @@
 package com.mcaprep.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -13,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.faltenreich.skeletonlayout.createSkeleton
+import com.mcaprep.R
 import com.mcaprep.databinding.ActivityTestScreenBinding
 import com.mcaprep.domain.mapper.toDomain
 import com.mcaprep.domain.model.AnsweredOption
@@ -44,6 +46,7 @@ class TestScreenActivity : AppCompatActivity() {
     private var currentPosition: Int = 0
     private var attempted: Int = 0
     private var markForReview: Int = 0
+    private var totalQuestion: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,8 +73,9 @@ class TestScreenActivity : AppCompatActivity() {
 //            binding.viewPager.currentItem = questionIndex
             currentPosition  = questionIndex
             updateButtonUI()
-            questionChangeListener?.onQuestionChanged(questions[currentPosition], (currentPosition + 1).toString())
-                binding.drawerLayout.closeDrawer(binding.navigationDrawer.navView,true)
+//            questionChangeListener?.onQuestionChanged(questions[currentPosition], (currentPosition + 1).toString())
+            showQuestionFragment(questions[currentPosition], currentPosition)
+            binding.drawerLayout.closeDrawer(binding.navigationDrawer.navView,true)
         }
         testSeriesViewModel.answers.observe(
             this,
@@ -150,18 +154,21 @@ class TestScreenActivity : AppCompatActivity() {
         Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun onSuccess(details: TestDetails) {
         questions.clear()
         questions.addAll(details.questions)
 //        binding.viewPager.adapter = QuestionPagerAdapter(this, question)
-        val questionFragment = QuestionFragment.newInstance(questions[0], 0.toString())
-        supportFragmentManager.beginTransaction()
-            .replace(binding.questionFragmentContainer.id, questionFragment).commit()
+//        val questionFragment = QuestionFragment.newInstance(questions[0], 0.toString())
+//        supportFragmentManager.beginTransaction()
+//            .replace(binding.questionFragmentContainer.id, questionFragment).commit()
+        showQuestionFragment(questions[0], currentPosition)
         binding.navigationDrawer.questionNumberRecycler.adapter = questionNavigationAdapter
         timer = startTimer(details.remainingSecond, binding.remainingTime) {
             testSeriesViewModel.endTest()
         }
-        binding.navigationDrawer.totalQuestion.text = questions.size.toString()
+        totalQuestion = questions.size
+        binding.navigationDrawer.totalQuestion.text = totalQuestion.toString()
         binding.navigationDrawer.unattemptedQuestion.text = (questions.size - (attempted + markForReview)).toString()
         binding.testName.text = details.name
         binding.navigationDrawer.testName.text = details.name
@@ -174,10 +181,11 @@ class TestScreenActivity : AppCompatActivity() {
             if (currentPosition > 0) {
                 currentPosition--
                 updateButtonUI()
-                questionChangeListener?.onQuestionChanged(
-                    questions[currentPosition],
-                    (currentPosition + 1).toString()
-                )
+//                questionChangeListener?.onQuestionChanged(
+//                    questions[currentPosition],
+//                    (currentPosition + 1).toString()
+//                )
+                showQuestionFragment(questions[currentPosition], currentPosition)
             }
 //            val prevPosition = binding.viewPager.currentItem - 1
 //            if (prevPosition >= 0) {
@@ -189,10 +197,11 @@ class TestScreenActivity : AppCompatActivity() {
             if (currentPosition < questions.size - 1) {
                 currentPosition++
                 updateButtonUI()
-                questionChangeListener?.onQuestionChanged(
-                    questions[currentPosition],
-                    (currentPosition + 1).toString()
-                )
+//                questionChangeListener?.onQuestionChanged(
+//                    questions[currentPosition],
+//                    (currentPosition + 1).toString()
+//                )
+                showQuestionFragment(questions[currentPosition], currentPosition)
             }
 //            val currentPosition = binding.viewPager.currentItem
 //            if (currentPosition == question.size - 1) {
@@ -220,14 +229,22 @@ class TestScreenActivity : AppCompatActivity() {
 //        })
 //    }
 
+    private fun showQuestionFragment(currentQuestion: Question, position: Int) {
+        val questionFragment = QuestionFragment.newInstance(currentQuestion, (position + 1).toString(), false)
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+            .replace(binding.questionFragmentContainer.id, questionFragment)
+            .commit()
+    }
+
     private fun showSubmitTestDialog() {
-        val dialog = SubmitTestDialog.newInstance()
+        val dialog = SubmitTestDialog.newInstance(totalQuestion, attempted, markForReview)
         dialog.show(supportFragmentManager, "SubmitTestDialog")
     }
 
-    internal fun setQuestionChangeListener(listener: QuestionChange) {
-        questionChangeListener = listener
-    }
+//    internal fun setQuestionChangeListener(listener: QuestionChange) {
+//        questionChangeListener = listener
+//    }
 
     private fun updateButtonUI() {
         binding.previous.visibility = if (currentPosition == 0) View.GONE else View.VISIBLE

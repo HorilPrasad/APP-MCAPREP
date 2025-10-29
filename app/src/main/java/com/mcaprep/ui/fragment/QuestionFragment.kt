@@ -7,14 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.mcaprep.R
 import com.mcaprep.databinding.FragmentQuestionBinding
 import com.mcaprep.domain.model.Question
-import com.mcaprep.listeners.QuestionChange
-import com.mcaprep.ui.activity.TestScreenActivity
 import com.mcaprep.ui.viewmodel.TestSeriesViewModel
 import com.mcaprep.ui.views.MathJaxView
 import com.mcaprep.utils.MathJaxInterface
@@ -23,12 +22,14 @@ import kotlinx.coroutines.launch
 
 private const val ARG_QUESTION = "question_arg"
 private const val ARG_POSITION = "position_arg"
+private const val ARG_IS_HISTORY = "is_history_arg"
 
 @AndroidEntryPoint
-class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
+class QuestionFragment : Fragment(), MathJaxInterface {
 
     private var question: Question? = null
     private var questionPosition: String? = null
+    private var isHistory: Boolean = false
 
 
     private var _binding: FragmentQuestionBinding? = null
@@ -39,7 +40,15 @@ class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
     // Store option layouts for easier management
     private lateinit var optionLayouts: Map<String, LinearLayoutCompat>
     private lateinit var options: Map<String, MathJaxView>
-    private lateinit var checkedLayout: Map<String, ImageView>
+    private lateinit var checkedLayout: Map<String, AppCompatImageView>
+
+    private val optionKeys = mapOf(
+            "op_A" to "A",
+            "op_B" to "B",
+            "op_C" to "C",
+            "op_D" to "D",
+            "op_E" to "E"
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +59,9 @@ class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
                 it.getParcelable(ARG_QUESTION)
             }
             questionPosition = it.getString(ARG_POSITION)
+            isHistory = it.getBoolean(ARG_IS_HISTORY)
         }
-        (activity as TestScreenActivity).setQuestionChangeListener(this)
+//        (activity as TestScreenActivity).setQuestionChangeListener(this)
     }
 
     override fun onCreateView(
@@ -98,9 +108,10 @@ class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
         // This might be better handled if testId is guaranteed to be set before fragments are shown
         testSeriesViewModel.initializeTest(testSeriesViewModel.currentTestId ?: "")
 
-        updateUI(currentQuestion, (questionPosition?.toInt()?.plus(1)).toString())
+        updateUI(currentQuestion, questionPosition ?: "")
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI(currentQuestion: Question, position: String) {
         binding.questionNumber.text = position
         // Set question text and options
@@ -117,16 +128,36 @@ class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
             binding.opELayout.visibility = View.GONE
         }
 
-        // Load previously selected answer and update UI
-        lifecycleScope.launch {
-            val selectedOptionKey = currentQuestion.id?.let { testSeriesViewModel.getSelectedAnswerForQuestion(it) }
-            updateOptionSelectionVisuals(selectedOptionKey)
+        if (!isHistory) {// Load previously selected answer and update UI
+            lifecycleScope.launch {
+                val selectedOptionKey = currentQuestion.id?.let { testSeriesViewModel.getSelectedAnswerForQuestion(it) }
+                updateOptionSelectionVisuals(selectedOptionKey)
+            }
+
+            // Set click listeners for each option layout
+            options.forEach { (key, layout) ->
+                layout.setOnClickListener {
+                    currentQuestion.id?.let { questionId -> handleOptionClick(questionId, key) }
+                }
+            }
         }
 
-        // Set click listeners for each option layout
-        options.forEach { (key, layout) ->
-            layout.setOnClickListener {
-                currentQuestion.id?.let { questionId -> handleOptionClick(questionId, key) }
+        if (isHistory) {
+            binding.solutionLayout.visibility = View.VISIBLE
+            binding.correctOption.text = "Correct Option: ${optionKeys[currentQuestion.solution]}"
+            updateOptionSelectionVisuals(currentQuestion.solution)
+            currentQuestion.explanation?.let { binding.solutionText.setText(it) }
+            if (!currentQuestion.selectedOption.isNullOrEmpty()) {
+                if (currentQuestion.selectedOption != currentQuestion.solution) {
+                    updateOptionIncorrect(currentQuestion.selectedOption)
+                    binding.incorrectMarks.text = "- ${currentQuestion.negative}"
+                    binding.incorrectMarks.visibility = View.VISIBLE
+                    binding.correctMarks.visibility = View.GONE
+                } else {
+                    binding.correctMarks.text = "+ ${currentQuestion.marks}"
+                    binding.correctMarks.visibility = View.VISIBLE
+                    binding.incorrectMarks.visibility = View.GONE
+                }
             }
         }
 
@@ -153,6 +184,20 @@ class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
         }
     }
 
+    private fun updateOptionIncorrect(selectedKey: String?) {
+        optionLayouts.forEach { (key, layout) ->
+            if (key == selectedKey) {
+                layout.setBackgroundResource(R.drawable.border_radius_red)
+            }
+        }
+        checkedLayout.forEach { (key, imageView) ->
+            if (key == selectedKey) {
+                imageView.visibility = View.VISIBLE
+                imageView.setBackgroundResource(R.drawable.ic_incorrect)
+            }
+        }
+    }
+
     override fun onMathJaxReady() {
         // Re-render if necessary
     }
@@ -162,20 +207,21 @@ class QuestionFragment : Fragment(), MathJaxInterface, QuestionChange {
         _binding = null
     }
 
-    override fun onQuestionChanged(
-        question: Question,
-        position: String
-    ) {
-        updateUI(question, position)
-    }
+//    override fun onQuestionChanged(
+//        question: Question,
+//        position: String
+//    ) {
+//        updateUI(question, position)
+//    }
 
     companion object {
         @JvmStatic
-        fun newInstance(questionData: Question, positionStr: String) =
+        fun newInstance(questionData: Question, positionStr: String, isHistory: Boolean) =
             QuestionFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_QUESTION, questionData)
                     putString(ARG_POSITION, positionStr)
+                    putBoolean(ARG_IS_HISTORY, isHistory)
                 }
             }
     }

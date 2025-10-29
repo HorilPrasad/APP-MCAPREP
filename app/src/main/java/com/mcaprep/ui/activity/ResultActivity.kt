@@ -35,19 +35,11 @@ class ResultActivity : AppCompatActivity() {
         val testId  = intent.getStringExtra(TEST_ID)
         val count  = intent.getIntExtra(COUNT, 1)
 
-        binding.toolbar.headerTitle.text = "NIMCET 2025 Official"
+        binding.toolbar.headerTitle.text = "Test Performance"
         binding.toolbar.headerTitle.visibility = View.VISIBLE
         binding.toolbar.actionBarIcon.setOnClickListener {
             onBackPressed()
         }
-
-
-        val tabs = listOf("Analysis", "Solution")
-        binding.viewPager.adapter = ResultViewPagerAdapter(this, tabs)
-
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = tabs[position]
-        }.attach()
 
         if (testId != null) {
             testSeriesViewModel.getTestHistory(testId, count)

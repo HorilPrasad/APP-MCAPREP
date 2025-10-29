@@ -7,12 +7,15 @@ import androidx.core.app.ActivityOptionsCompat
 import com.mcaprep.R
 import com.mcaprep.ui.activity.AuthActivity
 import com.mcaprep.ui.activity.MainActivity
+import com.mcaprep.ui.activity.ProfileActivity
 import com.mcaprep.ui.activity.ResultActivity
+import com.mcaprep.ui.activity.TestBuilderActivity
 import com.mcaprep.ui.activity.TestScreenActivity
 import com.mcaprep.ui.activity.TestSeriesActivity
 import com.mcaprep.utils.Constants.COUNT
-import com.mcaprep.utils.Constants.EXAM_NAME
+import com.mcaprep.utils.Constants.TEST_NAME
 import com.mcaprep.utils.Constants.TEST_ID
+import com.mcaprep.utils.Constants.TEST_TYPE
 
 object NavigationHelper {
     private var options: ActivityOptionsCompat? = null
@@ -38,9 +41,10 @@ object NavigationHelper {
         activity.startActivity(intent, options?.toBundle())
     }
 
-    fun navigateToTestSeries(activity: Activity, examName: String) {
+    fun navigateToTestSeries(activity: Activity, testName: String, testType: String) {
         val intent = Intent(activity, TestSeriesActivity::class.java)
-        intent.putExtra(EXAM_NAME, examName)
+        intent.putExtra(TEST_NAME, testName)
+        intent.putExtra(TEST_TYPE, testType)
         activity.startActivity(intent, options?.toBundle())
     }
 
@@ -54,6 +58,16 @@ object NavigationHelper {
         val intent = Intent(activity, ResultActivity::class.java)
         intent.putExtra(TEST_ID, testId)
         intent.putExtra(COUNT, count)
+        activity.startActivity(intent, options?.toBundle())
+    }
+
+    fun navigateToProfile(activity: Activity) {
+        val intent = Intent(activity, ProfileActivity::class.java)
+        activity.startActivity(intent, options?.toBundle())
+    }
+
+    fun navigateToTestBuilder(activity: Activity) {
+        val intent = Intent(activity, TestBuilderActivity::class.java)
         activity.startActivity(intent, options?.toBundle())
     }
 }

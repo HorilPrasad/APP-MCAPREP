@@ -2,8 +2,10 @@ package com.mcaprep.di
 
 import com.mcaprep.data.repository.AuthRepository
 import com.mcaprep.data.repository.TestSeriesRepository
+import com.mcaprep.data.repository.UserRepository
 import com.mcaprep.data.repository.impl.AuthRepositoryImpl
 import com.mcaprep.data.repository.impl.TestSeriesRepositoryImpl
+import com.mcaprep.data.repository.impl.UserRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,5 +25,10 @@ abstract class RepositoryModule {
         impl: TestSeriesRepositoryImpl
     ): TestSeriesRepository
 
+
+    @Binds
+    abstract fun bindUserRepository(
+        impl: UserRepositoryImpl
+    ): UserRepository
 
 }

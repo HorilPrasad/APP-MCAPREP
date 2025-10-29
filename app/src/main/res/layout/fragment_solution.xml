@@ -6,11 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.SolutionFragment">
 
-    <include
-        android:id="@+id/question"
-        layout="@layout/fragment_question"
-        app:layout_constraintTop_toTopOf="@+id/test_screen_footer"/>
+<!--    <include-->
+<!--        android:id="@+id/question"-->
+<!--        android:paddingBottom="@dimen/padding_large"-->
+<!--        layout="@layout/fragment_question"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/test_screen_footer"/>-->
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/question_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintBottom_toTopOf="@+id/test_screen_footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/test_screen_footer"
         android:layout_width="match_parent"
@@ -34,30 +45,12 @@
             android:backgroundTint="@color/primaryColor"
             android:elevation="0dp"
             android:gravity="center"
-            android:paddingHorizontal="0dp"
+            android:layout_marginHorizontal="@dimen/margin_medium"
             android:stateListAnimator="@null"
             android:text="previous"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/clear_btn"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="25dp"
-            android:layout_weight="1"
-            android:background="@drawable/border_radius_input"
-            android:backgroundTint="@color/primaryColor"
-            android:elevation="0dp"
-            android:gravity="center"
-            android:stateListAnimator="@null"
-            android:text="Clear"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/save_n_next_btn"
@@ -68,6 +61,7 @@
             android:backgroundTint="@color/primaryColor"
             android:elevation="0dp"
             android:gravity="center"
+            android:layout_marginHorizontal="@dimen/margin_medium"
             android:stateListAnimator="@null"
             android:text="Save &amp; Next"
             android:textAllCaps="false"

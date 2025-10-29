@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
 import com.faltenreich.skeletonlayout.createSkeleton
@@ -18,10 +19,16 @@ import com.mcaprep.databinding.FragmentHomeBinding
 import com.mcaprep.ui.adapter.CarouselAdapter
 import com.mcaprep.ui.adapter.CarouselItem
 import com.mcaprep.ui.viewmodel.AuthViewModel
+import com.mcaprep.utils.Constants.CUET_MCA
+import com.mcaprep.utils.Constants.MAH_CET
+import com.mcaprep.utils.Constants.NIMCET
+import com.mcaprep.utils.Constants.TOTD
+import com.mcaprep.utils.Constants.TWT
 import com.mcaprep.utils.NavigationHelper
 import com.mcaprep.utils.extentions.observeResource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
@@ -55,13 +62,28 @@ class HomeFragment : Fragment() {
         skeleton =  binding.carouselViewPager.applySkeleton(R.layout.item_carousel)
 
         binding.nimcet.setOnClickListener {
-            NavigationHelper.navigateToTestSeries(requireActivity(), "NIMCET")
+            NavigationHelper.navigateToTestSeries(requireActivity(), "NIMCET", NIMCET)
         }
         binding.cuet.setOnClickListener {
-            NavigationHelper.navigateToTestSeries(requireActivity(), "CUETMCA")
+            NavigationHelper.navigateToTestSeries(requireActivity(), "CUET MCA", CUET_MCA)
         }
         binding.mahCet.setOnClickListener {
-            NavigationHelper.navigateToTestSeries(requireActivity(), "MAHMCA")
+            NavigationHelper.navigateToTestSeries(requireActivity(), "MAH MCA", MAH_CET)
+        }
+        binding.topicWise.setOnClickListener {
+            NavigationHelper.navigateToTestSeries(requireActivity(), "Topic Wise", TWT)
+        }
+
+        binding.totd.setOnClickListener {
+            NavigationHelper.navigateToTestSeries(requireActivity(), "Test of the day", TOTD)
+        }
+
+        binding.userImageCard.setOnClickListener {
+            NavigationHelper.navigateToProfile(requireActivity())
+        }
+
+        binding.testBuilder.setOnClickListener {
+            NavigationHelper.navigateToTestBuilder(requireActivity())
         }
 
         authViewModel.notificationImageResponse.observeResource(

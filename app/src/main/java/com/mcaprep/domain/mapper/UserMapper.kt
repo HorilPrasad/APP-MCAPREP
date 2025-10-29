@@ -35,6 +35,24 @@ fun UserEntity.toDomain(projects: List<ProjectEntity>) = User(
     }
 )
 
+fun UserEntity.toDomain() = User(
+    id = id,
+    name = name,
+    email = email,
+    phone = userDetails.phoneNumber,
+    role = role,
+    loginMethod = login,
+    college = userDetails.college,
+    plan = plan,
+    startDate = startDate,
+    duration = duration,
+    streak = streak,
+    lastActiveDate = lastDate,
+    examYear = userDetails.examYear,
+    dob = userDetails.dob,
+    projects = emptyList()
+)
+
 fun UserDto.toDomain(): User {
     return User(
         id = id,

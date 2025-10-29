@@ -10,6 +10,7 @@ data class EndTestRequest(
     @SerialName("solution")
     val solution: List<SolutionsDto>
 )
+
 @Serializable
 data class SolutionsDto(
     @SerialName("question")

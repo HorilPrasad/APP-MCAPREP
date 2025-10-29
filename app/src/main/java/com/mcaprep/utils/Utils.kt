@@ -5,6 +5,7 @@ import java.util.TimeZone
 import android.os.CountDownTimer
 import android.widget.TextView
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 
 @SuppressLint("SimpleDateFormat")
@@ -55,4 +56,25 @@ fun startTimer(seconds: Int, textView: TextView, onFinish: () -> Unit): CountDow
     }
     timer.start()
     return timer
+}
+
+
+fun calculateExpiryDate(startDate: String, durationInSeconds: Long): String {
+    try {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        inputFormat.timeZone = TimeZone.getTimeZone("Asia/Kolkata") // IST
+
+        val outputFormat = SimpleDateFormat("dd MMM, yyyy", Locale.getDefault())
+        outputFormat.timeZone = TimeZone.getTimeZone("Asia/Kolkata")
+
+        val parsedDate = inputFormat.parse(startDate) ?: return ""
+
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Kolkata"))
+        calendar.time = parsedDate
+        calendar.add(Calendar.SECOND, durationInSeconds.toInt())
+
+        return outputFormat.format(calendar.time)
+    } catch (_: Exception) {
+        return ""
+    }
 }

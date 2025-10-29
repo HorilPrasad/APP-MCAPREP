@@ -27,13 +27,11 @@ class TestListAdapter(private val testList: List<TestItem>, private val onClickL
         val testItem = testList[position]
 
         holder.binding.testName.text = testItem.name
-        holder.binding.testSchedule.text = formatUtcToIst(testItem.schedule)
-        holder.binding.testQuestion.text = "Question ${testItem.questionLength} | ${convertSecondsToMinutes(testItem.duration)} Minutes"
+        holder.binding.testQuestionDetails.text = "${testItem.questionLength} Questions | ${convertSecondsToMinutes(testItem.duration)} Minutes | ${testItem.difficulty}"
         holder.binding.testMarks.text = "${testItem.totalScore} Marks"
-        holder.binding.testAttempt.text = testItem.totalAttempt.toString()
-        holder.binding.testPremium.visibility = if (testItem.premium) View.VISIBLE else View.GONE
+        holder.binding.testAttemptCount.text = "${testItem.totalAttempt} Attempted"
 
-        holder.binding.root.setOnClickListener {
+        holder.binding.testStartBtn.setOnClickListener {
             onClickListener.onClick(testItem)
         }
     }
